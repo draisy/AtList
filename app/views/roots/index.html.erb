@@ -1,0 +1,14 @@
+<h1> Home Page </h1>
+
+<% if current_user %>
+  <%= link_to "Logged in as #{current_user.first_name}", "#" %>
+  <h1><%= current_user.email %>
+  <%= image_tag(current_user.user_image) %>
+  <%= link_to 'Log Out', logout_path %>
+<% else %>
+  <%= link_to "Sign Up", "/auth/facebook" %>
+  <%= link_to "Log In", "/auth/facebook" %>
+<% end %>
+
+
+

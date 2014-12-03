@@ -1,8 +1,10 @@
 <h1> List Show Page </h1>
 
 <%= form_for ([@list, Favorite.new]) do |f| %>
+  <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.label :description %>
   <%= f.text_field :description %>
-  <%= f.file_field :favorite_image %>
+  <%= f.file_field :favorite_image %><br>
   <%= f.submit %>
 <% end %>

@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   root 'roots#index'
 
+  resources :users do 
+    resources :lists
+  end 
+
   resources :lists do 
     resources :favorites
   end 
@@ -10,11 +14,8 @@ Rails.application.routes.draw do
     resources :lists
   end 
 
-  resources :users do 
-    resources :lists
-  end 
-
   resources :users
+  resources :favorites
 
   get '/auth/:provider/callback' => 'sessions#create', :as => :auth_login
 

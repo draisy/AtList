@@ -7,15 +7,14 @@ class ListsController < ApplicationController
   end
 
   def create
-    @category = Category.find(params[:list][:category_id])
-    if @category 
-      @category.lists.build(list_params)
+    if params[:list][:category_id].blank? 
+      @list = List.create(list_params_new_category)
     else 
-      List.create(list_params)
+      @category = Category.find(params[:list][:category_id])
+      @list = @category.lists.create(list_params)
     end
-    @user = User.find(params[:user_id])
-    @user_list = @user.lists.build(list_params)
-    redirect_to user_list_path(@user_list)
+    current_user.lists << @list 
+    redirect_to user_list_path(current_user.id, @list.id)
   end 
 
 
@@ -30,12 +29,13 @@ class ListsController < ApplicationController
 
   private
   def list_params
-    params.require(:list).permit(:title, :category_id, :new_category_name)
+    params.require(:list).permit(:title, :category_id)
   end
 
-  # def category_params
-  #   params.require(:category).permit(:id)
-  # end
+  def list_params_new_category
+    params.require(:list).permit(:title, :new_category_name)
+  end
+
 
 
 end

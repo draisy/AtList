@@ -1,0 +1,8 @@
+<h1> List Show Page </h1>
+
+<%= form_for ([@list, Favorite.new]) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :description %>
+  <%= f.file_field :favorite_image %>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,21 @@
+<h1> New List </h1>
+
+
+<p>
+<%= form_for (@list) do |f| %>
+  <%= f.label :name %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Select a category" %>
+  or create one: 
+  <%= f.text_field :new_category_name %>
+</p>
+  <%= f.text_field :title %>
+  <%= f.submit %>
+<% end %>
+
+  <%#= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] } + [['Or create a new one','new']], {:include_blank => 'Please select a category'}) %>
+  <%#= f.text_field :title %>
+  <%#= f.submit %>
+
+
+
+

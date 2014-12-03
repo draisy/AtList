@@ -13,6 +13,21 @@ class User < ActiveRecord::Base
   has_many :pokes, :foreign_key => 'giver_id'
   has_many :relists, :foreign_key => 'giver_id'
 
+  def user_friends
+    friends = FacebookWrapper.new(self.token).get_friends
+    friends.collect {|friend| User.find_by_uid(friend[:uid]) }
+  end
+
+  def user_friends_by_name
+    user_objects = user_friends
+    user_objects.collect do |user|
+      user.first_name
+    end
+  end
+
+
+
+
 
   def self.create_with_omniauth_and_koala(auth)
     create! do |user|
@@ -20,6 +35,7 @@ class User < ActiveRecord::Base
       User.koala(auth, user)
       user.provider = auth["provider"]
       user.uid = auth["uid"]
+      user.token = auth['credentials']['token']
 
       user.first_name = auth["info"]["first_name"]
       user.last_name = auth["info"]["last_name"]
@@ -33,7 +49,7 @@ class User < ActiveRecord::Base
     facebook = Koala::Facebook::API.new(access_token)
     user_attrs = facebook.get_object("me?fields=first_name, last_name, email, picture")
     user_friends = facebook.get_connections("me", "friends")
-    binding.pry
+
 
     user.first_name = user_attrs["first_name"]
     user.last_name = user_attrs["last_name"]

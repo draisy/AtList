@@ -6,6 +6,14 @@ Rails.application.routes.draw do
     resources :favorites
   end 
 
+  resources :categories do 
+    resources :lists
+  end 
+
+  resources :users do 
+    resources :lists
+  end 
+
   resources :users
 
   get '/auth/:provider/callback' => 'sessions#create', :as => :auth_login

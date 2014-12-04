@@ -12,5 +12,17 @@ class Category < ActiveRecord::Base
     end
     category_score.inject(:+)
   end
-  
+
+  # SEARCH------
+  searchable do
+    text :name, :boost => 2.0
+
+    string :sort_name do 
+      name.downcase.gsub(/^(an?|the)/, '')
+    end
+  end
+# END OF SEARCH
+
 end
+
+

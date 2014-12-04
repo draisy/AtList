@@ -8,6 +8,18 @@ class List < ActiveRecord::Base
   attr_accessor :new_category_name
   before_save :create_category_from_name
 
+
+  # SEARCH------
+  searchable do 
+    text :title, :boost => 2.0
+
+    string  :sort_title do
+      title.downcase.gsub(/^(an?|the)/, '')
+    end
+  end 
+
+  # END OF SEARCH
+
   def create_category_from_name
     create_category(:name => new_category_name) unless new_category_name.blank?
   end

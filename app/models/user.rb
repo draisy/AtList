@@ -13,6 +13,24 @@ class User < ActiveRecord::Base
   has_many :pokes, :foreign_key => 'giver_id'
   has_many :relists, :foreign_key => 'giver_id'
 
+
+  # SEARCH------
+  searchable do 
+    text :first_name, :boost => 2.0
+    text :last_name, :boost => 2.0 
+    text :email  
+
+    string :sort_first_name do 
+      first_name.downcase
+    end 
+
+    string :sort_last_name do 
+      last_name.downcase.gsub(/^(an?|the)/, '')
+    end
+  end
+  # END OF SEARCH
+
+
   def user_friends
     friends = FacebookWrapper.new(self.token).get_friends
     friends.collect! {|friend| User.find_by_uid(friend["id"]) }

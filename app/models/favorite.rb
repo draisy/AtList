@@ -5,4 +5,17 @@ class Favorite < ActiveRecord::Base
   has_many :pokes, through: :influence
   has_many :relists, through: :influence
 
+  # SEARCH------
+  searchable do 
+    text :name, :boost => 2.0
+    text :description 
+
+    string  :sort_name do
+      name.downcase.gsub(/^(an?|the)/, '')
+    end
+  end
+  # END OF SEARCH
+
+
+
 end

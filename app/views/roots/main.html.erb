@@ -1,0 +1,11 @@
+<h1> After Signing In, User Comes Here </h1>
+<h2> This page will have link to profile page and show most popular from friends/around the network </h2> 
+
+
+<h6> Get FB friends of current user and show what their popular lists are/lists that are getting a lot of upvotes...later can show what else is popular around the network? </h6>
+
+<h6> Friends of Current User </h6>
+<% current_user.user_friends_lists.flatten.each do |list| %>
+  <%= link_to "#{list.title} by #{list.user.first_name}", user_list_path(list.user, list) %>
+<% end %>
+

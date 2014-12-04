@@ -1,10 +1,14 @@
 <h1> List Show Page </h1>
+<h2> <%= @list.title %> (category: <%= @list.category.name %>) </h2>
 
 <ul>
   <% @list.favorites.each do |fav| %>
     <li><%= fav.name %>: <%= fav.description %> </li>
     <li><%= link_to "Delete Fav", list_favorite_path(@list, fav.id), :method => :delete %></li>
     <li><%= link_to "Edit Fav", edit_list_favorite_path(@list, fav.id) %></li>
+    <li><%= link_to "UpPoke Fav", poke_path(fav) %></li>
+    <li><%= link_to "ReList Fav", relist_path(fav) %></li>
+
   <%end %>
 </ul>
 

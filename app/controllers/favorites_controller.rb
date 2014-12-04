@@ -26,10 +26,17 @@ class FavoritesController < ApplicationController
   end
 
   def poke 
-    @poke = Poke.new.favorite_poke
+    @favorite = Favorite.find(params[:id])
+    @list = @favorite.list
+    @favorite.influence.pokes.create(:giver_id => current_user.id, :receiver_id => @list.user.id)
+    redirect_to user_list_path(current_user.id, @list.id)
   end
 
   def relist
+    @favorite = Favorite.find(params[:id])
+    @list = @favorite.list
+    @favorite.influence.relists.create(:giver_id => current_user.id, :receiver_id => @list.user.id)
+    redirect_to user_list_path(current_user.id, @list.id)
   end
 
   def destroy

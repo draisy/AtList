@@ -21,8 +21,9 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destroy', :as => :logout
 
-  get '/poke' => 'favorites#poke', :as => :poke
-  get '/relist' => 'favorites#relist', :as => :relist
+  get '/poke/:id' => 'favorites#poke', :as => :poke
+  get '/relist/:id' => 'favorites#relist', :as => :relist
+  get '/main' => 'roots#main', :as => :main
 
 
   # The priority is based upon order of creation: first created -> highest priority.

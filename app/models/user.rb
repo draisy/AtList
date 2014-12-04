@@ -15,19 +15,59 @@ class User < ActiveRecord::Base
 
   def user_friends
     friends = FacebookWrapper.new(self.token).get_friends
-    friends.collect {|friend| User.find_by_uid(friend[:uid]) }
+    friends.collect! {|friend| User.find_by_uid(friend["id"]) }
+  end
+
+  def user_friends_lists
+    user_objects = user_friends
+    user_lists = user_objects.collect do |user| 
+      user.lists 
+    end
   end
 
   def user_friends_by_name
     user_objects = user_friends
-    user_objects.collect do |user|
+    user_objects.collect! do |user|
       user.first_name
     end
   end
 
+  def count_total_favorites
+    self.favorites.count
+  end
 
+  def count_total_upvotes
+    upvote_count_array = self.favorites.collect do |fav|
+      fav.influence.get_pokes
+    end
+    upvote_count_array.inject(:+)
+  end
 
+  def count_total_relists
+    relist_count_array = self.favorites.collect do |fav|
+      fav.influence.get_relists
+    end
+    relist_count_array.inject(:+)
+  end
 
+  def user_influence_across_lists
+    list_agg = lists.collect do |list|
+      list.get_list_influence
+    end
+      list_agg.inject(:+)
+  end
+
+  def user_influence_on_particular_category(category)
+    lists = get_user_lists_in_category(category)
+    list_agg = lists.collect do |list|
+      list.get_list_influence
+    end
+      list_agg.inject(:+)
+  end
+
+  def get_user_lists_in_category(category)
+    self.lists.where(:category_id => category.id)
+  end
 
   def self.create_with_omniauth_and_koala(auth)
     create! do |user|

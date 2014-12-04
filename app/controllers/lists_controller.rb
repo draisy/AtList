@@ -41,7 +41,8 @@ class ListsController < ApplicationController
       @list.update(list_params)
     end
     current_user.lists << @list 
-    redirect_to user_lists_path(current_user.id, @list.id)
+    # redirect_to user_lists_path(current_user.id, @list.id)
+    redirect_to user_path(current_user)
   end
 
 

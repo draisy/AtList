@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
     session[:user_id] = @user.id
     
     # redirect_to session[:origin_path]
-    redirect_to user_lists_path(@user)
+    # redirect_to user_lists_path(@user)
+      redirect_to main_path
   end
 
   def destroy

@@ -1,0 +1,32 @@
+<h1> User Profile Page </h1>
+
+<% if current_user %>
+<h3> Link to make a new list </h3> 
+<%= link_to "new list", new_user_list_path(current_user) %>
+<% end %>
+
+<h3> Stats Section </h3> 
+<h5> Number of Lists: <%= @lists.count %> </h5>
+<h5> Number of Favorites: <%= @favorites_count %>    </h5>
+<h5> Number of Upvotes on User's Total No of Lists: <%= @lists.last.favorites.first.influence.tabulate_score %>  </h5>
+<h5> Number of Relists on User's Total No of Lists: </h5>
+
+
+
+<h3> Can see stats on you as user, how many followers, etc </h3>
+
+<h3> View index of all yourlists </h3>
+<ul> 
+  <% @lists.each do |list| %>
+    <li> <%= list.title %> </li>
+    <% if current_user %>
+        <%= link_to "Delete List", user_list_path(current_user, list), :method => :delete %>
+        <%= link_to "Edit List", edit_user_list_path(current_user, list) %>
+    <% end %>
+    <ol>
+    <% list.favorites.each do |fav| %>
+      <li><%= fav.name %>: <%= fav.description %> </li>
+    <% end %>
+  </ol>
+  <% end %>
+</ul>

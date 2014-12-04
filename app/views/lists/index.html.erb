@@ -1,3 +1,9 @@
 <h1> User Home Page w/ List Index </h1>
 
 <%= link_to "new list", new_user_list_path(@user) %>
+
+<% @lists.each do |list| %>
+  <%= list.title %>
+  <%= link_to "Delete List", user_list_path(current_user, list), :method => :delete %>
+  <%= link_to "Edit List", edit_user_list_path(current_user, list) %>
+<% end %>

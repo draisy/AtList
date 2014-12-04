@@ -15,11 +15,16 @@ Rails.application.routes.draw do
   end 
 
   resources :users
-  resources :favorites
+  # resources :favorites
 
   get '/auth/:provider/callback' => 'sessions#create', :as => :auth_login
 
   get '/logout' => 'sessions#destroy', :as => :logout
+
+  get '/poke' => 'favorites#poke', :as => :poke
+  get '/relist' => 'favorites#relist', :as => :relist
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

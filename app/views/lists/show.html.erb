@@ -1,5 +1,16 @@
 <h1> List Show Page </h1>
 
+<ul>
+  <% @list.favorites.each do |fav| %>
+    <li><%= fav.name %>: <%= fav.description %> </li>
+    <li><%= link_to "Delete Fav", list_favorite_path(@list, fav.id), :method => :delete %></li>
+    <li><%= link_to "Edit Fav", edit_list_favorite_path(@list, fav.id) %></li>
+  <%end %>
+</ul>
+
+
+
+<h3> Add a new favorite </h3>
 <%= form_for ([@list, Favorite.new]) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -8,3 +19,5 @@
   <%= f.file_field :favorite_image %><br>
   <%= f.submit %>
 <% end %>
+
+<%= link_to "Delete List", user_list_path(current_user, @list), :method => :delete %>

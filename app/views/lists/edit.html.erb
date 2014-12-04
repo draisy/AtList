@@ -1,5 +1,4 @@
-<h1> New List </h1>
-
+<h1> Edit the "<%= @list.title %>" List </h1>
 
 <p>
 <%= form_for (@list) do |f| %>
@@ -11,9 +10,3 @@
   <%= f.text_field :title %>
   <%= f.submit %>
 <% end %>
-
-
-
-
-
-

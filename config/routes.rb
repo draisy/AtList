@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end 
 
   resources :users
+
+  get '/search' => 'searches#index', :as => :search
   # resources :favorites
 
   get '/auth/:provider/callback' => 'sessions#create', :as => :auth_login

@@ -2,27 +2,79 @@
 <html>
 <head>
   <title>AtlistApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if current_user %>
-  <%= link_to "Logged in as #{current_user.first_name}", "#" %>
-  <%= current_user.email %>
-  <%= image_tag(current_user.user_image) %>
-  <%= link_to "my home page", user_path(current_user) %>
-  <%= link_to 'Log Out', logout_path %>
-<% else %>
-  <%= link_to "Sign Up", "/auth/facebook" %>
-  <%= link_to "Log In", "/auth/facebook" %>
-<% end %>
+<%# if current_user %>
+  <%#= link_to "Logged in as #{current_user.first_name}", "#" %>
+  <%#= current_user.email %>
+  <%#= image_tag(current_user.user_image) %>
+  <%#= link_to "my home page", user_path(current_user) %>
+  <%#= link_to 'Log Out', logout_path %>
+<%# else %>
+  <%#= link_to "Sign Up", "/auth/facebook" %>
+  <%#= link_to "Log In", "/auth/facebook" %>
+<%# end %>
 
 
-  <%= form_tag search_path, :method => 'get' do %>
-    <%= text_field_tag :q, params[:q], :placeholder => "Search for a person, category, list or favorite" %>
-    <%= submit_tag "Find it!"  %>       
-  <% end %>
+  <%#= form_tag search_path, :method => 'get' do %>
+    <%#= text_field_tag :q, params[:q], :placeholder => "Search for a person, category, list or favorite" %>
+    <%#= submit_tag "Find it!"  %>       
+  <%# end %>
+
+
+    <!--start: Header -->
+  <header>
+    
+    <!--start: Container -->
+    <div class="container">
+      
+      <!--start: Navigation -->
+      <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+          <a class="brand" href="index.html">tabula</a>
+                <div class="nav-collapse collapse">
+                  <ul class="nav">
+              <li class="active"><a href="index.html">Home</a></li>
+                      <li ><a href="about.html">About</a></li>
+              <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="social-icons.html">Social Icons</a></li>
+                  <li><a href="icons.html">Glyphicons Halflings</a></li>
+                  <li><a href="icons-pro.html">Glyphicons PRO</a></li>
+                  <li><a href="icons_set2.html">Font Awesome Icons</a></li>
+                  <li><a href="typography.html">Typography</a></li>
+                  <li><a href="shortcodes.html">Shortcodes</a></li>
+                  <li><a href="list-styles.html">List Styles</a></li>
+                  <li><a href="charts.html">Charts</a></li>
+                  <li><a href="sliders.html">Sliders</a></li>
+                        </ul>
+                      </li>
+              <li ><a href="portfolio.html">Portfolio</a></li>                  
+              <li ><a href="pricing.html">Pricing</a></li>
+              <li ><a href="blog.html">Blog</a></li>
+                      <li ><a href="contact.html">Contact</a></li>
+              <li ><a href="login.html">Login</a></li>
+              <li ><a href="register.html">Register</a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>  
+      <!--end: Navigation -->
+      
+    </div>
+    <!--end: Container-->     
+      
+  </header>
+  <!--end: Header-->
 
 
 

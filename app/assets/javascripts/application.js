@@ -12,5 +12,28 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+
+//= require jquery-1.9.1.min
+//= require jquery.isotope.min
+//= require jquery.imagesloaded
+//= require bootstrap.min
+//= require flexslider
+//= require carousel
+//= require jquery.cslider
+//= require slider
+//= require jquery.fancybox
+//= require twitter
+//= require jquery.placeholder.min
+
+//= require jquery-easing-1.3
+//= require layerslider.kreaturamedia.jquery
+
+//= require excanvas
+//= require jquery.flot
+//= require jquery.flot.pie.min
+//= require jquery.flot.stack
+//= require jquery.flot.resize.min
+
+//= require modernizr
+//= require retina
+//= require custom

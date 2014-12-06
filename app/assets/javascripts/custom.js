@@ -462,7 +462,7 @@ jQuery(document).ready(function () {
 		// initialize Isotope
 		$container.isotope({
 		// options...
-		resizable: true, // disable normal resizing
+		resizable: false, // disable normal resizing
 		// set columnWidth to a percentage of container width
 	  	masonry: { columnWidth: $container.width() / 12 }
 		});

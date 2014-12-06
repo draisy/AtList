@@ -1,3 +1,47 @@
-// Place all the styles related to the Roots controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://fonts.googleapis.com/css?family=Scada);
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#home {
+  background: url(fullcollage2.jpg) no-repeat;
+  background-size: 100% 100%;
+  opacity: 0.93;
+  z-index: -1;
+}
+
+
+#welcome-sign-up {
+  height: 55%;
+  width: 50%;
+  background: white;
+  opacity: 0.95;
+  color: black;
+  position: absolute;
+  margin-left: 25%;
+
+}
+
+.welcome-text-title {
+  font-family: 'Scada', sans-serif !important;
+  font-weight: 700;
+  font-size: 50px;
+  color: black;
+}
+
+.welcome-text {
+  font-family: 'Scada', sans-serif !important;
+  font-weight: 700;
+  font-size: 1.7em;
+  color: black;
+}
+
+
+

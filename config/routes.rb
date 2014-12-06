@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   get '/poke/:id' => 'favorites#poke', :as => :poke
   get '/relist/:id' => 'favorites#relist', :as => :relist
   get '/main' => 'roots#main', :as => :main
+  get '/what_we_do' => 'roots#what_we_do', :as => :what_we_do
+  get '/team' => 'roots#team', :as => :team
+  get '/contact' => 'roots#contact', :as => :contact
 
 
   # The priority is based upon order of creation: first created -> highest priority.

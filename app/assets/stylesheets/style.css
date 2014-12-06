@@ -19,13 +19,14 @@
 @import url("font-awesome-ie7.css");		/* Font Awesome*/
 @import url("glyphicons.css");				/* Glyphicons SVG & Font */
 @import url("halflings.css");				/* Glyphicons Halflings SVG & Font */
+@import url(http://fonts.googleapis.com/css?family=Scada);
 
 html { -webkit-font-smoothing: antialiased; }
 
 body {
-	font-family: 'Droid Sans', sans-serif;
+	font-family: 'Scada', sans-serif;
 	font-weight: 400;
-	background: #ccc;
+	background: white;
 	color: #000;
 	font-size: 12px;
 }

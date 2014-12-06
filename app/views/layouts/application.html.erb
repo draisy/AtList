@@ -7,23 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%# if current_user %>
-  <%#= link_to "Logged in as #{current_user.first_name}", "#" %>
-  <%#= current_user.email %>
-  <%#= image_tag(current_user.user_image) %>
-  <%#= link_to "my home page", user_path(current_user) %>
-  <%#= link_to 'Log Out', logout_path %>
-<%# else %>
-  <%#= link_to "Sign Up", "/auth/facebook" %>
-  <%#= link_to "Log In", "/auth/facebook" %>
-<%# end %>
-
-
-  <%#= form_tag search_path, :method => 'get' do %>
-    <%#= text_field_tag :q, params[:q], :placeholder => "Search for a person, category, list or favorite" %>
-    <%#= submit_tag "Find it!"  %>       
-  <%# end %>
-
 
     <!--start: Header -->
   <header>
@@ -39,44 +22,42 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </a>
-          <a class="brand" href="index.html">tabula</a>
-                <div class="nav-collapse collapse">
-                  <ul class="nav">
-              <li class="active"><a href="index.html">Home</a></li>
-                      <li ><a href="about.html">About</a></li>
-              <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="social-icons.html">Social Icons</a></li>
-                  <li><a href="icons.html">Glyphicons Halflings</a></li>
-                  <li><a href="icons-pro.html">Glyphicons PRO</a></li>
-                  <li><a href="icons_set2.html">Font Awesome Icons</a></li>
-                  <li><a href="typography.html">Typography</a></li>
-                  <li><a href="shortcodes.html">Shortcodes</a></li>
-                  <li><a href="list-styles.html">List Styles</a></li>
-                  <li><a href="charts.html">Charts</a></li>
-                  <li><a href="sliders.html">Sliders</a></li>
-                        </ul>
-                      </li>
-              <li ><a href="portfolio.html">Portfolio</a></li>                  
-              <li ><a href="pricing.html">Pricing</a></li>
-              <li ><a href="blog.html">Blog</a></li>
-                      <li ><a href="contact.html">Contact</a></li>
-              <li ><a href="login.html">Login</a></li>
-              <li ><a href="register.html">Register</a></li>
-                  </ul>
-                </div>
+          <%= link_to "AtList", root_path, :class => "brand" %>
+              <div class="nav-collapse collapse">
+                <ul class="nav">
+                  <li class="active"><%= link_to "HOME", main_path%></li>
+                  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">ABOUT<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "What we do", what_we_do_path %></li>
+                      <li><%= link_to "The team", team_path %></li>
+                      <li><%= link_to "Contact us", contact_path %></li>
+                    </ul>
+                  </li>
+                  <% if current_user %>
+                    <li><%= link_to "MY PROFILE", user_path(current_user)%></li> 
+                    <li><%= link_to "LOGGED IN AS #{current_user.first_name}", "#" %></li>
+                    <li> <%= image_tag(current_user.user_image) %> </li>  
+                    <li><%= link_to "LOG OUT", logout_path%></li> 
+                  <% else %>
+                    <li><%= link_to "SIGN UP", "/auth/facebook" %></li>
+                    <li><%= link_to "LOG IN", "/auth/facebook" %></li>
+                  <% end %>
+                </ul>
+              </div>
             </div>
           </div>  
       <!--end: Navigation -->
+
+      <%#= form_tag search_path, :method => 'get' do %>
+        <%#= text_field_tag :q, params[:q], :placeholder => "Search for a person, category, list or favorite" %>
+        <%#= submit_tag "Find it!"  %>       
+      <%# end %>
       
     </div>
     <!--end: Container-->     
       
   </header>
   <!--end: Header-->
-
-
 
 <%= yield %>
 

@@ -31,17 +31,25 @@ body {
 
 .welcome-text-title {
   font-family: 'Scada', sans-serif !important;
-  font-weight: 700;
+  font-weight: 700 !important;
   font-size: 50px;
   color: black;
 }
 
-.welcome-text {
+.welcome-text-header {
   font-family: 'Scada', sans-serif !important;
-  font-weight: 700;
+  font-weight: 700 !important;
   font-size: 1.7em;
   color: black;
 }
 
+.welcome-text{
+  font-family: 'Scada', sans-serif !important;
+  font-size: 1.7em;
+  color: black;
+}
 
+.home-button {
+  width: 30% !important;
+}
 

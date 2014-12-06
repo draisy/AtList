@@ -3580,3 +3580,12 @@ a.buy:hover {
 .btn-youtube.active {
   background-color: #3e0309 \9;
 }
+
+.user-image {
+  border: none !important;
+}
+
+.search-field {
+  margin-top: 12px;
+  width: 30%;
+}

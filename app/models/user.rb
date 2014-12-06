@@ -36,11 +36,22 @@ class User < ActiveRecord::Base
     friends.collect! {|friend| User.find_by_uid(friend["id"]) }
   end
 
+  # def user_friends_lists
+  #   user_objects = user_friends
+  #   user_lists = user_objects.collect do |user| 
+  #     user.lists 
+  #   end
+  # end
+
   def user_friends_lists
     user_objects = user_friends
-    user_lists = user_objects.collect do |user| 
-      user.lists 
+    user_lists = []
+    user_objects.each do |user|
+      if user  
+        user_lists << user.lists 
+      end
     end
+    user_lists
   end
 
   def user_friends_by_name

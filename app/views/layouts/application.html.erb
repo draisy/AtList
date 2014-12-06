@@ -22,37 +22,49 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </a>
-          <%= link_to "AtList", root_path, :class => "brand" %>
+          <% if current_user %>
+            <%= image_tag(current_user.user_image, :class => "brand user-image") %>
+            <%= link_to "AtList", main_path, :class => "brand" %>
+          <% else %>
+            <%= link_to "AtList", root_path, :class => "brand" %>
+          <% end %>
               <div class="nav-collapse collapse">
                 <ul class="nav">
-                  <li class="active"><%= link_to "HOME", main_path%></li>
-                  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">ABOUT<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "What we do", what_we_do_path %></li>
-                      <li><%= link_to "The team", team_path %></li>
-                      <li><%= link_to "Contact us", contact_path %></li>
-                    </ul>
-                  </li>
                   <% if current_user %>
+                    <li class="active"><%= link_to "HOME", main_path%></li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">ABOUT<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "What we do", what_we_do_path %></li>
+                        <li><%= link_to "The team", team_path %></li>
+                        <li><%= link_to "Contact us", contact_path %></li>
+                      </ul>
+                    </li>
                     <li><%= link_to "MY PROFILE", user_path(current_user)%></li> 
-                    <li><%= link_to "LOGGED IN AS #{current_user.first_name}", "#" %></li>
-                    <li> <%= image_tag(current_user.user_image) %> </li>  
-                    <li><%= link_to "LOG OUT", logout_path%></li> 
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">LOGGED IN AS <%= current_user.first_name %><b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "Log out", logout_path %></li>
+                      </ul>
+                    </li> 
                   <% else %>
-                    <li><%= link_to "SIGN UP", "/auth/facebook" %></li>
-                    <li><%= link_to "LOG IN", "/auth/facebook" %></li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">ABOUT<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "What we do", what_we_do_path %></li>
+                        <li><%= link_to "The team", team_path %></li>
+                        <li><%= link_to "Contact us", contact_path %></li>
+                      </ul>
+                    </li>
                   <% end %>
                 </ul>
               </div>
+          <% if current_user %>
+            <%= form_tag search_path, :method => 'get' do %>
+            <%= text_field_tag :q, params[:q], :placeholder => "Search for a person, category, list or favorite", :class => "search-field" %>
+            <%= submit_tag "Find it!"  %>       
+          <% end %>
+          <% end %>
             </div>
           </div>  
       <!--end: Navigation -->
-
-      <%#= form_tag search_path, :method => 'get' do %>
-        <%#= text_field_tag :q, params[:q], :placeholder => "Search for a person, category, list or favorite" %>
-        <%#= submit_tag "Find it!"  %>       
-      <%# end %>
-      
     </div>
     <!--end: Container-->     
       

@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :provider
       t.string :uid
+      t.integer :user_score, default: 0
       t.timestamps
     end
   end

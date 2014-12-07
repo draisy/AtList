@@ -211,7 +211,7 @@ header {
 	-webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
 	   -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
     		box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
-	margin-bottom: 80px;
+	margin-bottom: 20px;
 	position: fixed;
 	z-index: 1000;
 }
@@ -3588,4 +3588,49 @@ a.buy:hover {
 .search-field {
   margin-top: 12px;
   width: 30%;
+  font-family: 'Scada', sans-serif !important;
+}
+
+.find-it-button {
+  font-family: 'Scada', sans-serif !important;
+}
+
+.add-list {
+  background: white;
+  width: 56% !important;
+  height: 9em;
+  margin-left: 22%;
+  margin-bottom: 3%;
+  border-top: 1px solid rgba(241, 241, 241, 1);
+  border-bottom: 1px solid rgba(241, 241, 241, 1);;
+  border-right: 1px solid rgba(241, 241, 241, 1);;
+  border-left: 1px solid rgba(241, 241, 241, 1);;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6); 
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6); 
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6); 
+  -o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.create-list {
+  margin-left: 10%;
+  width: 80% !important;
+  height: 40%;
+  border-bottom: 1px solid rgba(230, 230, 230, 1);
+
+}
+.create-list h1 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+.about-list {
+  margin-top: 1.2em;
+  margin-left: 10%;
+  font-size: 14px !important;
+  color: rgba(180, 180, 180, 1);
+}
+
+.add-list-icon {
+  width: 10% !important;
+  background: url(listicon.jpg) no-repeat;
 }

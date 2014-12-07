@@ -79,12 +79,22 @@ class User < ActiveRecord::Base
     relist_count_array.inject(:+)
   end
 
+  def user_influence_across_lists_objects
+    self.user_score = user_influence_across_lists
+    self.save
+    self
+  end
+
   def user_influence_across_lists
     list_agg = lists.collect do |list|
       list.get_list_influence
     end
       list_agg.inject(:+)
   end
+
+  # def user_influence_on_particular_category_objects?
+    # NEED TO CREATE A METHOD FOR THIS?
+  # end
 
   def user_influence_on_particular_category(category)
     lists = get_user_lists_in_category(category)

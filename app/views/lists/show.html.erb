@@ -64,7 +64,7 @@
           <ul class="links-list-alt">
             <% @list.favorites.each_with_index do |fav, i| %>
             <li><a href="full_width.html"><%= i + 1%>. <%=fav.name %>: <%=fav.description%>
-            <% if current_user %>
+            <% if @list.user == current_user %>
               <%= link_to "x", list_favorite_path(@list, fav.id), :method => :delete %>
               <%= link_to "edit", edit_list_favorite_path(@list, fav.id) %></a></li>
             <% else %>

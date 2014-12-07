@@ -10,6 +10,9 @@ class SearchesController < ApplicationController
     @list_array = hash[List]
     @favorite_array = hash[Favorite]
     @user_array = hash[User]
+    binding.pry
+
+
   end 
 
 

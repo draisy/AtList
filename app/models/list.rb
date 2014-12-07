@@ -24,10 +24,16 @@ class List < ActiveRecord::Base
     create_category(:name => new_category_name) unless new_category_name.blank?
   end
 
+  def get_list_influence_objects
+    self.list_score = get_list_influence
+    self.save
+    self
+  end
+
   def get_list_influence
-    list_agg = self.favorites.collect do |fav|
-      fav.influence.tabulate_score 
-    end
+      list_agg = self.favorites.collect do |fav|
+        fav.influence.tabulate_score 
+      end
     list_agg.inject(:+)
   end
 

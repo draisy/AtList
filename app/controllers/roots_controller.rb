@@ -1,4 +1,5 @@
 class RootsController < ApplicationController
+  layout "special"
 
   def index
   end

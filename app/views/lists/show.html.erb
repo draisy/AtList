@@ -1,31 +1,6 @@
-<h1> List Show Page </h1>
-<h2> <%= @list.title %> (category: <%= @list.category.name %>) </h2>
-
-<ul>
-  <% @list.favorites.each do |fav| %>
-    <li><%= fav.name %>: <%= fav.description %> </li>
-    <li><%= link_to "Delete Fav", list_favorite_path(@list, fav.id), :method => :delete %></li>
-    <li><%= link_to "Edit Fav", edit_list_favorite_path(@list, fav.id) %></li>
-    <li><%= link_to "UpPoke Fav", poke_path(fav) %></li>
-    <li><%= link_to "ReList Fav", relist_path(fav) %></li>
-
-  <%end %>
-</ul>
-
-
-
-<h3> Add a new favorite </h3>
-<%= form_for ([@list, Favorite.new]) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.file_field :favorite_image %><br>
-  <%= f.submit %>
-<% end %>
-
-<%= link_to "Delete List", user_list_path(current_user, @list), :method => :delete %>
-
+<br>
+<br>
+<br>
   <!--start: Container -->
   <div class="container">
     <!-- start: Page Title -->
@@ -60,13 +35,11 @@
                 <span><i class="icon-comments-alt"></i>With #POKES/RELISTS</span>
               </div>
             </div>
-          
           </div>
           <!-- end: Post -->
           <hr>
-          
+          <%= link_to "Delete List", user_list_path(current_user, @list), :method => :delete %>
           <div class="clearfix"></div>
-        
         </div>  
     
         <!-- start: Sidebar -->
@@ -89,13 +62,28 @@
         <div class="widget">
           <h3>Favorites</h3>
           <ul class="links-list-alt">
-            <li><a href="full_width.html">1. </a></li>
-            <li><a href="sidebar.html">2. </a></li>
-            <li><a href="post.html">3. </a></li>
-            <li><a href="about.html">4. </a></li>
-            <li><a href="pricing_tables.html">5. </a></li>
+            <% @list.favorites.each_with_index do |fav, i| %>
+            <li><a href="full_width.html"><%= i + 1%>. <%=fav.name %>: <%=fav.description%>
+            <% if current_user %>
+              <%= link_to "x", list_favorite_path(@list, fav.id), :method => :delete %>
+              <%= link_to "edit", edit_list_favorite_path(@list, fav.id) %></a></li>
+            <% else %>
+              <%= link_to "UpPoke", poke_path(fav) %>
+              <%= link_to "ReList", relist_path(fav) %></a></li>
+            <% end %>
+            <% end %>
+            <li> <h3>Add a new favorite</h3> 
+              <%= form_for ([@list, Favorite.new]) do |f| %>
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+                <%= f.label :description %>
+                <%= f.text_field :description %>
+                <%= f.file_field :favorite_image %><br>
+                <%= f.submit %>
+              <% end %></li>
           </ul>
         </div>
+
         <!-- end: Sidebar Menu -->
 
         <!-- start: Tags -->

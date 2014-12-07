@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AtlistApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+    <!--start: Header -->
+  <header>
+    
+    <!--start: Container -->
+    <div class="container">
+      
+      <!--start: Navigation -->
+      <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+          <% if current_user %>
+            <%= image_tag(current_user.user_image, :class => "brand user-image") %>
+            <%= link_to "AtList", main_path, :class => "brand" %>
+          <% else %>
+            <%= link_to "AtList", root_path, :class => "brand" %>
+          <% end %>
+              <div class="nav-collapse collapse">
+                <ul class="nav">
+                  <% if current_user %>
+                    <li class="active"><%= link_to "HOME", main_path%></li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">ABOUT<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "What we do", what_we_do_path %></li>
+                        <li><%= link_to "The team", team_path %></li>
+                        <li><%= link_to "Contact us", contact_path %></li>
+                      </ul>
+                    </li>
+                    <li><%= link_to "MY PROFILE", user_path(current_user)%></li> 
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">LOGGED IN AS <%= current_user.first_name %><b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "Log out", logout_path %></li>
+                      </ul>
+                    </li> 
+                  <% else %>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">ABOUT<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "What we do", what_we_do_path %></li>
+                        <li><%= link_to "The team", team_path %></li>
+                        <li><%= link_to "Contact us", contact_path %></li>
+                      </ul>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+          <% if current_user %>
+            <%= form_tag search_path, :method => 'get' do %>
+            <%= text_field_tag :q, params[:q], :placeholder => "Search for a person, category, list or favorite", :class => "search-field" %>
+            <%= submit_tag "Find it!", :class => "btn-default find-it-button"  %>       
+          <% end %>
+          <% end %>
+            </div>
+          </div>  
+      <!--end: Navigation -->
+    </div>
+    <!--end: Container-->     
+      
+  </header>
+  <!--end: Header-->
+
+<%= yield %>
+
+
+
+</body>
+</html>

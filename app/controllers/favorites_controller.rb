@@ -13,6 +13,7 @@ class FavoritesController < ApplicationController
     redirect_to user_list_path(current_user.id, @list.id)
   end
 
+
   def edit
     @list = List.find(params[:list_id])
     @favorite = @list.favorites.find(params[:id])

@@ -5,7 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
 first_names = ["Kevin", "Dave", "Ian", "Sam", "Andrea", "Sarah", "Britney", "Martin", "Avi", "Courtney"]
 last_names = ["Hyer", "Bratler", "Penn", "Aflick", "Joly", "Dunkins", "Adler", "Jenkins", "Mas", "Buyer"]
 
@@ -15,23 +14,27 @@ favorites = [{:name => "Ground Support", :description => "best cappucino spot fo
 
 category = Category.create(:name => "coffee")
 
+
 20.times do 
   u = User.new
   u.first_name = first_names.sample
   u.last_name = last_names.sample
+  u.full_name = u.first_name + " " + u.last_name
   l = List.new
+  l.user = u
   l.title = lists.sample
   l.category = category
   u.save
   u.reload
 
   5.times do
-    f = Favorite.create(favorites.sample)
+    f = Favorite.new(favorites.sample)
     f.influence = Influence.create
-    rand(20).times do 
-      f.influence.pokes << Poke.create(:receiver_id => u.id, :giver_id => User.all.sample.id)
-      f.influence.relists << Relist.create(:receiver_id => u.id, :giver_id => User.all.sample.id)
-    end 
+    f.list = l
+      rand(20).times do 
+        f.influence.pokes << Poke.create(:receiver_id => u.id, :giver_id => User.all.sample.id)
+        f.influence.relists << Relist.create(:receiver_id => u.id, :giver_id => User.all.sample.id)
+      end 
     f.save
     l.favorites << f
   end

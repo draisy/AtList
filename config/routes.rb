@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'roots#index'
 
+  mount Soulmate::Server, :at => "/autocomplete"
+
   resources :users do 
     resources :lists
   end 

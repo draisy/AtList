@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require fancybox
+//= require jquery.soulmate
+//= require roots
 
-//= require jquery-1.9.1.min
+
 //= require jquery.isotope.min
 //= require jquery.imagesloaded
 //= require bootstrap.min
@@ -37,3 +40,10 @@
 //= require modernizr
 //= require retina
 //= require custom
+
+$(document).ready(function() {
+  $("a.fancybox").fancybox();
+});
+
+
+

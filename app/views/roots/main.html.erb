@@ -1,3 +1,15 @@
+<!-- fancybox test -->
+<%= link_to "Show mah Fancybox!", "#hello", class: "fancybox" %>
+<div style="display:none;">
+  <div id="hello">
+  Hello world!
+  </div>
+</div>
+
+
+<!-- end fancybox test -->
+
+
 <% current_user.user_friends_lists.flatten.each do |list| %>
   <%= link_to "#{list.title} by #{list.user.first_name}", user_list_path(list.user, list) %>
 <% end %>
@@ -8,7 +20,10 @@
     <div class="create-list">
       <div class="add-list-icon"></div>
       <div class="other">
-     <h1><%= link_to "Create a new list", new_user_list_path(current_user) %></h1>
+     <h1><%= link_to "Create a new list", "#createlist",class: "fancybox" %></h1>
+     <div id="createlist">
+      <%= render 'shared/create_list' %>
+    </div>
       </div>
    </div>
    <div class="about-list">What's your new favorite?

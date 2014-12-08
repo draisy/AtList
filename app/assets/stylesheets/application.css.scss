@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require_self
+ *= require jquery-ui
+ *= require jquery-ui/autocomplete
  *= require_tree .
  */
 

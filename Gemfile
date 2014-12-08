@@ -47,4 +47,6 @@ gem 'spring',        group: :development
 # Bootstrap
 gem 'bootstrap-sass', '~> 2.3.1.3'
 gem 'autoprefixer-rails'
-
+gem "d3-rails"
+gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'

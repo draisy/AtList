@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
+  resources :lists do
+    get :autocomplete_list_title, :on => :collection
+  end
 
   root 'roots#index'
 
-  resources :users do 
+  resources :users do
     resources :lists
-  end 
+  end
 
-  resources :lists do 
+  resources :lists do
     resources :favorites
-  end 
+  end
 
-  resources :categories do 
+  resources :categories do
     resources :lists
-  end 
+  end
 
   resources :users
 

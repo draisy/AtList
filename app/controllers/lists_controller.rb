@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  autocomplete :list, :title, :full => true
 
   def new
     @list = List.new

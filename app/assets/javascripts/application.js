@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require jquery-ui
+//= require jquery-ui/autocomplete
 //= require jquery-1.9.1.min
 //= require jquery.isotope.min
 //= require jquery.imagesloaded
@@ -37,3 +38,6 @@
 //= require modernizr
 //= require retina
 //= require custom
+//= require d3
+//= require autocomplete
+//= require autocomplete-rails

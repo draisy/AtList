@@ -1,383 +1,97 @@
-  
-  <!--start: Container -->
-  <div class="container">
-        
-    <!--start: Wrapper-->
-    <div id="wrapper">
-    
-      <!-- start: Wall -->
-      <div id="wall" class="row-fluid">
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
 
-        <div class="span3 item">
-          <div class="quotes">
-            <div class="quote">
-            “That’s not what we think design is. It’s not just what it looks like and feels like. Design is how it works”
-            </div>
-            <div class="author">
-              - Steve Jobs -
-            </div>  
-          </div>
-        </div>
+text {
+  font: 10px sans-serif;
+}
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo5.jpg" alt=""/></a>
-            <div class="description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-              </p>
-            </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>
-          </div>
-        </div>
+</style>
+<body>
+<div class="json-data" data-json="<%= @list_json %>"></div> 
+<div>This is our search index page for results</div>
 
-        <div class="span3 item">
-          <div class="quotes">
-            <div class="quote">
-            “In most people’s vocabularies, design means veneer. It’s interior decorating. It’s the fabric of the curtains of the sofa. But to me, nothing could be further from the meaning of design. Design is the fundamental soul of a human-made creation that ends up expressing itself in successive outer layers of the product or service.”
-            </div>
-            <div class="author">
-              - Steve Jobs -
-            </div>  
-          </div>
-        </div>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+$(function() {
+  var diameter = 960;
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo1.jpg" alt=""/></a>
-            <div class="description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>
-          </div>  
-        </div>
+  var svg = d3.select("body").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo9.jpg" alt=""/></a>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>
-          </div>
-        </div>
+  var rectangle = svg.append("rect")
+    .attr("x", 100)
+    .attr("y", 100)
+    .attr("width", 200)
+    .attr("height", 100)
+    .style("fill", "#000");
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo2.jpg" alt=""/></a>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>  
-          </div>
-        </div>
+  var circle = svg.append("circle")
+    .attr("r", 20)
+    .style("fill", "#ff0000");
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo3.jpg" alt=""/></a>
-            <div class="description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
-              </p>
-            </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>  
-          </div>
-        </div>
+});
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo4.jpg" alt=""/></a>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>  
-          </div>
-        </div>
+  // var diameter = 960,
+  //     format = d3.format(",d"),
+  //     color = d3.scale.category20c();
 
-        <div class="span3 item">
-          <div class="flex-video">
-            <iframe src="http://player.vimeo.com/video/48502577?portrait=0&color=ffffff" width="480" height="256" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>  
-          </div>
-        </div>
+  // var bubble = d3.layout.pack()
+  //     .sort(null)
+  //     .size([diameter, diameter])
+  //     .padding(1.5);
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo6.jpg" alt=""/></a>
-            <div class="description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-              </p>
-            </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>  
-          </div>
-        </div>
+  // var svg = d3.select("body").append("svg")
+  //     .attr("width", diameter)
+  //     .attr("height", diameter)
+  //     .attr("class", "bubble");
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo7.jpg" alt=""/></a>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>
-          </div>
-        </div>
+  // var node = svg.append("node")
+  //     .enter().append("g")
+  //     .attr("class", "node")
+  //     .attr("transform", function(d) { return "translate(" + 100 + "," + 100 + ")"; });
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo8.jpg" alt=""/></a>
-            <div class="description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-              </p>
-            </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>  
-          </div>
-        </div>
+  // var node = svg.selectAll(".node")
+  //     .enter().append("g")
+  //     .attr("class", "node")
+  //     .attr("transform", function(d) { return "translate(" + 100 + "," + 100 + ")"; });
 
-        <div class="span3 item scenery">
-          <div class="quotes">
-            <div class="quote">
-              “Innovation distinguishes between a leader and a follower.” 
-            </div>
-            <div class="author">
-              - Steve Jobs -
-            </div>  
-          </div>
-        </div>
+  // d3.json("flare.json", function(error, root) {
+  //   var node = svg.selectAll(".node")
+  //       .data(bubble.nodes(classes(root))
+  //       .filter(function(d) { return !d.children; }))
+  //     .enter().append("g")
+  //       .attr("class", "node")
+  //       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-        <div class="span3 item">
-          <div class="quotes">
-            <div class="quote">
-            “Visual design is often the polar opposite of engineering: trading hard edges for subjective decisions based on gut feelings and personal experiences. It’s messy, unpredictable, and notoriously hard to measure. The apparently erratic behavior of artists drives engineers bananas. Their decisions seem arbitrary and risk everything with no guaranteed benefit.”
-            </div>
-            <div class="author">
-              - Scott Stevenson -
-            </div>  
-          </div>
-        </div>
+//     node.append("title")
+//         .text(function(d) { return d.className + ": " + format(d.value); });
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo10.jpg" alt=""/></a>
-            <div class="description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-              </p>
-            </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>  
-          </div>
-        </div>
+//     node.append("circle")
+//         .attr("r", function(d) { return d.r; })
+//         .style("fill", function(d) { return color(d.packageName); });
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo11.jpg" alt=""/></a>
-            <div class="description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-              </p>
-            </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>  
-          </div>
-        </div>
+//     node.append("text")
+//         .attr("dy", ".3em")
+//         .style("text-anchor", "middle")
+//         .text(function(d) { return d.className.substring(0, d.r / 3); });
+//   });
 
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo12.jpg" alt=""/></a>
-            <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
-            </div>
-          </div>
-        </div>
+//   // Returns a flattened hierarchy containing all leaf nodes under the root.
+//   function classes(root) {
+//     var classes = [];
 
-      </div>
-      <!-- end: Wall -->        
-          
-    </div>
-    <!--end: Container-->
-  
-  </div>
-  <!-- end: Wrapper  -->      
+//     function recurse(name, node) {
+//       if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+//       else classes.push({packageName: name, className: node.name, value: node.size});
+//     }
 
-  <!-- start: Footer -->
-  <div id="footer">
-    
-    <!-- start: Container -->
-    <div class="container">
-  
-      <!-- start: Row -->
-      <div class="row-fluid">
+//     recurse(null, root);
+//     return {children: classes};
+//   }
 
-        <!-- start: About -->
-        <div class="span3">
-          
-          <h3>creativeLabs</h3>
-
-          <p>
-            <i class="icon-map-marker"></i> 30 South Park Avenue
-          </p>
-          <p> 
-            <i class="icon-map-marker"></i> San Francisco, CA 94108, USA
-          </p>  
-          <p> 
-            <i class="icon-phone"></i> Phone: (123) 456-7890
-          </p>
-          <p> 
-            <i class="icon-print"></i> Fax: +08 (123) 456-7890
-          </p>
-          <p>
-            <i class="icon-envelope"></i> Email: contact@companyname.com
-          </p>
-          <p>
-            <i class="icon-globe"></i> Web: companyname.com
-          </p>
-            
-        </div>
-        <!-- end: About -->
-
-        <!-- start: Latest Tweets -->
-        <div class="span3">
-          
-          <h3>Latest Tweets</h3>
-          
-          <ul id="twitter">
-            
-          </ul>
-
-          <div class="clear"></div>
-          
-          
-        </div>
-        <!-- end: Latest Tweets -->
-
-        <!-- start: Photo Stream -->
-        <div class="span3">
-          
-          <h3>Flickr Photo Stream</h3>
-          <div class="flickr-widget">
-            <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=12&display=latest&size=s&layout=x&source=user&user=29609591@N08"></script>
-            <div class="clear"></div>
-          </div>
-          
-        </div>
-        <!-- end: Photo Stream -->
-        
-        <!-- start: Follow Us -->
-        <div class="span3">
-          
-          <h3>Follow Us</h3>
-          
-          <a href="#" class="social-dribbble"></a>
-          <a href="#" class="social-twitter"></a>
-          <a href="#" class="social-flickr"></a>
-          <a href="#" class="social-facebook"></a>
-          <a href="#" class="social-linkedin"></a>
-          <a href="#" class="social-vimeo"></a>
-          <a href="#" class="social-youtube"></a>
-          <a href="#" class="social-delicious"></a>
-          <a href="#" class="social-rss"></a>
-          <a href="#" class="social-picassa"></a>
-          <a href="#" class="social-deviantart"></a>
-          <a href="#" class="social-technorati"></a>
-          <a href="#" class="social-stumbleupon"></a>
-          <a href="#" class="social-appstore"></a>
-          <a href="#" class="social-paypal"></a>
-          <a href="#" class="social-myspace"></a>
-          <a href="#" class="social-pinterest"></a>
-          <a href="#" class="social-soundcloud"></a>
-          <a href="#" class="social-behance"></a>
-          <a href="#" class="social-instagram"></a>
-          <a href="#" class="social-googleplus"></a>
-  
-        </div>
-        <!-- end: Follow Us -->
-        
-      </div>
-      <!-- end: Row -->
-    
-    </div>
-    <!-- end: Container  -->  
-
-  </div>
-  <!-- end: Footer -->
-  
-  <!-- start: Under Footer -->
-  <div id="under-footer">
-    
-    <!-- start: Container -->
-    <div class="container">
-      
-      <!-- start: Row -->
-      <div class="row-fluid">
-
-        <!-- start: Under Footer Logo -->
-        <div class="span2">
-          <div id="under-footer-logo">
-            <a class="brand" href="#">tabula</a>
-          </div>
-        </div>
-        <!-- end: Under Footer Logo -->
-
-        <!-- start: Under Footer Copyright -->
-        <div class="span9">
-          
-          <div id="under-footer-copyright">
-            &copy; 2013, <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">creativeLabs</a>. Designed by <a href="http://bootstrapmaster.com" alt="Bootstrap Templates">Bootstrap Master</a> in Poland <img src="img/poland.png" alt="Poland" style="margin-top:-4px">
-          </div>
-          
-        </div>
-        <!-- end: Under Footer Copyright -->
-
-        <!-- start: Under Footer Back To Top -->
-        <div class="span1">
-            
-          <div id="under-footer-back-to-top">
-            <a href="#"></a>
-          </div>
-        
-        </div>
-        <!-- end: Under Footer Back To Top -->
-      
-      </div>
-      <!-- end: Row -->
-      
-    </div>  
-    <!-- end: Container  -->
-    
-  </div>
-  <!-- end: Under Footer -->  
+//   d3.select(self.frameElement).style("height", diameter + "px");
+// });
+</script>

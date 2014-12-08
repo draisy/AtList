@@ -161,14 +161,27 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
   function show_details(data, i, element) {
     d3.select(element).attr("stroke", "black");
     var content = "<span class=\"name\">Title:</span><span class=\"value\"> " + data.name + "</span><br/>";
-    content +="<span class=\"name\">Amount:</span><span class=\"value\"> $" + addCommas(data.value) + "</span><br/>";
-    content +="<span class=\"name\">Year:</span><span class=\"value\"> " + data.year + "</span>";
+    content +="<span class=\"name\">Influence Level:</span><span class=\"value\"> " + addCommas(data.value) + "</span><br/>";
+   // content +="<span class=\"name\">Year:</span><span class=\"value\"> " + data.year + "</span>";
     tooltip.showTooltip(content, d3.event);
   }
  
   function hide_details(data, i, element) {
     d3.select(element).attr("stroke", function(d) { return d3.rgb(fill_color(d.group)).darker();} );
     tooltip.hideTooltip();
+  }
+
+function addCommas(nStr)
+  {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
   }
  
   var my_mod = {};
@@ -190,111 +203,3 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
   return my_mod;
 })(d3, CustomTooltip);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // var diameter = 960;
-
-  // var bubble = d3.layout.pack()
-  //   .sort(null)
-  //   .size([diameter, diameter])
-  //   .padding(1.5);
-
-  // var svg = d3.select("body").append("svg")
-  //   .attr("width", diameter)
-  //   .attr("height", diameter)
-  //   .attr("class", "bubble");
-
-    //  d3.json("flare.json", function(error, root) {
-    // var node = svg.selectAll(".node")
-    //     .data(bubble.nodes(classes(root))
-    //     .filter(function(d) { return !d.children; }))
-    //   .enter().append("g")
-    //     .attr("class", "node")
-    //     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-
-//   var rectangle = svg.append("rect")
-//     .attr("x", 100)
-//     .attr("y", 100)
-//     .attr("width", 200)
-//     .attr("height", 100)
-//     .style("fill", "#000");
-
-//   var circle = svg.append("circle")
-//     .attr("r", 20)
-//     .style("fill", "#ff0000");
-
-// };
-
-  // var diameter = 960,
-  //     format = d3.format(",d"),
-  //     color = d3.scale.category20c();
-
-  // var bubble = d3.layout.pack()
-  //     .sort(null)
-  //     .size([diameter, diameter])
-  //     .padding(1.5);
-
-  // var svg = d3.select("body").append("svg")
-  //     .attr("width", diameter)
-  //     .attr("height", diameter)
-  //     .attr("class", "bubble");
-
-  // var node = svg.append("node")
-  //     .enter().append("g")
-  //     .attr("class", "node")
-  //     .attr("transform", function(d) { return "translate(" + 100 + "," + 100 + ")"; });
-
-  // var node = svg.selectAll(".node")
-  //     .enter().append("g")
-  //     .attr("class", "node")
-  //     .attr("transform", function(d) { return "translate(" + 100 + "," + 100 + ")"; });
-
-  // d3.json("flare.json", function(error, root) {
-  //   var node = svg.selectAll(".node")
-  //       .data(bubble.nodes(classes(root))
-  //       .filter(function(d) { return !d.children; }))
-  //     .enter().append("g")
-  //       .attr("class", "node")
-  //       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-//     node.append("title")
-//         .text(function(d) { return d.className + ": " + format(d.value); });
-
-//     node.append("circle")
-//         .attr("r", function(d) { return d.r; })
-//         .style("fill", function(d) { return color(d.packageName); });
-
-//     node.append("text")
-//         .attr("dy", ".3em")
-//         .style("text-anchor", "middle")
-//         .text(function(d) { return d.className.substring(0, d.r / 3); });
-//   });
-
-//   // Returns a flattened hierarchy containing all leaf nodes under the root.
-//   function classes(root) {
-//     var classes = [];
-
-//     function recurse(name, node) {
-//       if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-//       else classes.push({packageName: name, className: node.name, value: node.size});
-//     }
-
-//     recurse(null, root);
-//     return {children: classes};
-//   }
-
-//   d3.select(self.frameElement).style("height", diameter + "px");
-// });

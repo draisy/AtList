@@ -41,3 +41,5 @@
 //= require d3
 //= require autocomplete
 //= require autocomplete-rails
+//= require influence-chart
+//= require customtooltip

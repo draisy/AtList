@@ -10,29 +10,34 @@ text {
 <body>
 <div class="json-data" data-json="<%= @list_json %>"></div> 
 <div>This is our search index page for results</div>
+<div id="vis"></div>
+  <%= javascript_tag do %>
+  <% path = search_path + ".json#{@query}" %>
+    renderChart("<%= path %>",'<%= ".json-data" %>');
+  <% end %>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
-$(function() {
-  var diameter = 960;
+// <script>
+// $(function() {
+//   var diameter = 960;
 
-  var svg = d3.select("body").append("svg")
-    .attr("width", diameter)
-    .attr("height", diameter)
-    .attr("class", "bubble");
+//   var svg = d3.select("body").append("svg")
+//     .attr("width", diameter)
+//     .attr("height", diameter)
+//     .attr("class", "bubble");
 
-  var rectangle = svg.append("rect")
-    .attr("x", 100)
-    .attr("y", 100)
-    .attr("width", 200)
-    .attr("height", 100)
-    .style("fill", "#000");
+//   var rectangle = svg.append("rect")
+//     .attr("x", 100)
+//     .attr("y", 100)
+//     .attr("width", 200)
+//     .attr("height", 100)
+//     .style("fill", "#000");
 
-  var circle = svg.append("circle")
-    .attr("r", 20)
-    .style("fill", "#ff0000");
+//   var circle = svg.append("circle")
+//     .attr("r", 20)
+//     .style("fill", "#ff0000");
 
-});
+// });
 
   // var diameter = 960,
   //     format = d3.format(",d"),
@@ -94,4 +99,4 @@ $(function() {
 
 //   d3.select(self.frameElement).style("height", diameter + "px");
 // });
-</script>
+// </script>

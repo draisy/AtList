@@ -1,6 +1,8 @@
 class SearchesController < ApplicationController
+  respond_to :html, :json
 
   def index
+    @query = "?q=#{params[:q].gsub(" ", ("+"))}".strip
     @search = Sunspot.search(Category, User, List, Favorite) do
       fulltext params[:q], :minimum_match => 0
     end
@@ -18,7 +20,13 @@ class SearchesController < ApplicationController
        :title => list.title, :user_id => list.user_id,
        :user_first_name => list.user.first_name}
     end
-    @list_json = @list_array.to_json
+   # @list_json = @list_array.to_json
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @list_array.to_json }
+    end
+    #respond_with @list_array
 
   end
 

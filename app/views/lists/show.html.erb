@@ -21,16 +21,22 @@
             <div class="post-img picture">
 
               <!--start: Container -->
-                <div id="ListFavoritesContainer">
-                    <% @list.favorites.each do |fav| %>
-                      <div class="masonryImage">
-                        <%= image_tag(fav.favorite_image)%>
-                        <li> <%= fav.name %> </li>
-                      </div>
+
+                <div class="packery">
+                  <% @list.favorites.each_with_index do |fav, index| %>
+                      <% if index == 0 %>
+                      <div class="grid-sizer"><%= image_tag(fav.favorite_image)%></div>
+                      <% elsif index == 1 %>
+                        <div class ="item big">
+                          <%= image_tag(fav.favorite_image)%>
+                        </div>
+                      <% else %>
+                        <div class="item"><%= image_tag(fav.favorite_image)%>
+                        </div>
+                      <% end %>
                     <% end %>
     
                 </div>
-                <!--end: Container-->
             </div>
               
 

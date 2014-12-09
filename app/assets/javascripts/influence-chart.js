@@ -1,10 +1,10 @@
 function renderChart(json_url, sel) {
+
   alert("in function")
 
   d3.json(json_url, function(data) {
     custom_bubble_chart.init(data);
     custom_bubble_chart.toggle_view('all');
-   // custom_bubble_chart.photos(data);
     });
 
 var custom_bubble_chart = (function(d3, CustomTooltip) {
@@ -31,7 +31,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
                   .range(["#d84b2a", "#beccae", "#7aa25c"]);
  
   function custom_chart(data) {
-    var max_amount = d3.max(data, function(d) { return d.list_score, 10; } );
+    var max_amount = d3.max(data, function(d) { return d.score, 10; } );
     radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 20]);
     //radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
     
@@ -43,9 +43,9 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
 
       var node = {
         id: d.id,
-        radius: radius_scale(parseInt(d.list_score, 10)),
-        value: d.list_score,
-        name: d.title,
+        radius: radius_scale(parseInt(d.score, 10)),
+        value: d.score,
+        name: d.name,
         user: d.user_first_name,
         photo: d.photo,
         //group: d.group,
@@ -70,8 +70,8 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
       for(var i = 1; i < nodes.length; i++){
        // var photo_height = radius_scale(parseInt(data[i].list_score, 10))
        // var photo_width = radius_scale(parseInt(data[i].list_score, 10))
-         photo_height = (parseInt(data[i].list_score));
-         photo_width = (parseInt(data[i].list_score));
+         photo_height =(parseInt(data[i].score));
+         photo_width = (parseInt(data[i].score));
 
 
           defs.append('svg:pattern')
@@ -79,19 +79,17 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
               .attr("preserveAspectRatio", "xMidYMid slice")
              // .attr('patternUnits', 'userSpaceOnUse')
               .attr('patternUnits', 'objectBoundingBox')
-             // .attr('viewBox', "0 0 1 1")
+             //.attr('viewBox', "0 0 1 1")
               .attr('width', '100%')
               .attr('height', '100%')
               .append('svg:image')
               .attr('xlink:href', data[i].photo)
-              .attr("preserveAspectRatio", "xMidYMid slice")
-              .attr('x', 0)
-              .attr('y', 0)
+              //.attr("preserveAspectRatio", "xMidYMid slice")
+              .attr('x', 20)
+              .attr('y', 20)
               .attr('width', parseInt(photo_width))
               .attr('height', parseInt(photo_height));
     }
-
-     var group = d3.select("#svg_vis").append("g").attr("id", "#svg_g");
  
     circles = vis.selectAll("circle")
                  .data(nodes, function(d) { return d.id ;});
@@ -103,38 +101,16 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
      // .attr("fill", function(d) { return fill_color(d.group) ;})
      // .attr('fill', "url(#photo_1)")
       .attr("stroke-width", 2)
-      .attr("stroke", function(d) {return d3.rgb(fill_color(d.title)).darker();})
+      .attr("stroke", function(d) {return d3.rgb(fill_color(d.name)).darker();})
      // .attr("stroke", function(d) {return d3.rgb(fill_color(d.group)).darker();})
       .attr("id", function(d) { return  "bubble_" + d.id; })
       .on("mouseover", function(d, i) {show_details(d, i, this);} )
       .on("mouseout", function(d, i) {hide_details(d, i, this);} );
     
-    //circle.append("svg:image")
-   // .attr("xlink:href", "pigeon.jpg)
 
     circles.transition().duration(2000).attr("r", function(d) { return d.radius; });
  
   }
-  
-//d3.select("#bubble_10")[0][0].__data__.photo
-  // append("image")
-  //     .attr("xlink:href", "http://www.e-pint.com/epint.jpg")
-  //     .attr("width", 150)
-  //     .attr("height", 200);
-
-    //d3.selectAll("circle").append("image").data(nodes, function(d) { return d.photo ;});
-      //    .attr("xlink:href", "http://www.e-pint.com/epint.jpg")
-      // .attr("width", 150)
-      // .attr("height", 200);
-  //var imgs = vis.selectAll("image").data(nodes, function(d) { return d.photo ;});
-    // imgs.enter()
-    // .append("svg:img")
-    // .attr("xlink:href", 'http://placekitten.com/g/200/300')
-    // .attr("x", "60")
-    // .attr("y", "60")
-    // .attr("width", "20")
-    // .attr("height", "20");
-
  
   function charge(d) {
     return -Math.pow(d.radius, 2.0) / 8;

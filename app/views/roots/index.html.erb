@@ -8,8 +8,14 @@
 <!--   <center><h3 class="welcome-text"> Make favorite lists on anything. Gain influence on what you know best. Use the influence of your friends for recommendations you can trust. Connect with the best of the world around you. </h3></center> -->
   <br>
   <br>
-  <center><%= button_to "Connect with Facebook", "/auth/facebook", :class => "btn btn-facebook home-button"%></center>
-  <center><%= button_to "Login", "/auth/facebook", :class => "btn btn-facebook home-button"%></center>
+
+<%= button_to "/auth/facebook", {class: "btn home-button btn-facebook"} do %>
+       Facebook <i class="fa fa-facebook"></i>
+<% end %>
+
+
+  <center><%= button_to "Connect with Facebook", "/auth/facebook", :class => "btn home-button btn-facebook"%></center>
+  <center><%= button_to "Login", "/auth/facebook", :class => "btn home-button btn-facebook"%></center>
 </div>
 
 

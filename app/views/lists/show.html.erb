@@ -21,7 +21,7 @@
             <div class="post-img picture">
 
               <!--start: Container -->
-                <div id="ListFavoritesContainer">
+                <div id="ListFintavoritesContainer">
                     <% @list.favorites.each do |fav| %>
                       <div class="masonryImage">
                         <%= image_tag(fav.favorite_image)%>
@@ -51,7 +51,7 @@
           </div>
           <!-- end: Post -->
           <hr>
-          <i class="icon-trash-o"></i> List
+          <i class="icon-trash"></i> List
           <%= link_to "Delete List", user_list_path(current_user, @list), :method => :delete %>
           <div class="clearfix"></div>
         </div>  
@@ -77,20 +77,41 @@
           <h3>Favorites</h3>
           <ul class="links-list-alt">
             <% @list.favorites.each_with_index do |fav, i| %>
-            <li><a href="#"><strong><%=fav.name %></strong><br/>
-            <%=fav.description%>
-            <%# if @list.user == current_user %>
+            <br/>
+            <div style="position:relative">
+            <li>
+              <a href="#"><span class="fav-name"><strong><%=fav.name %></strong></span><br/>
+              <span class="fav-desc"><%=fav.description%></span>
+              </a>
+            
+            <% if @list.user == current_user %>
+              
+              <div class="edit-del">
+                <%= link_to list_favorite_path(@list, fav.id), :class => "interactive-links", :method=>:delete do %>
+                  <i class='icon-trash'></i>
+                <% end %>
+            
+                 <%= link_to(edit_list_favorite_path(@list, fav.id)) do %>
+                  <i class='icon-pencil'></i>
+              <% end %>
+              </div>
   
-         
-            <i class="icon-pencil"></i>
-              <%= link_to "x", list_favorite_path(@list, fav.id), :method => :delete %>
-               <i class="icon-close"></i>
-              <%= link_to "edit", edit_list_favorite_path(@list, fav.id) %></a></li>
-            <%# else %>
-              <%= link_to "UpPoke", poke_path(fav) %>
-              <%= link_to "ReList", relist_path(fav) %></a></li>
-            <%# end %>
+            <% else %>
+            <div class="edit-del">
+                <%= link_to(poke_path(fav)) do %>
+                  <i class='icon-thumbs-up fa-lg'></i>
+                <% end %>
+
+                 <%= link_to(relist_path(fav)) do %>
+                  <i class='icon-retweet fa-lg'></i>
+              <% end %>
+              </div>
             <% end %>
+              </li>
+            </div>
+          <% end %>
+
+            <br/>
             <li><h1><%= link_to "Add a new favorite", "#addfavorite", class: "fancybox" %></h1>
                <div style="display:none;">
                  <div id="addfavorite">

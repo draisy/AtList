@@ -21,38 +21,19 @@
             <div class="post-img picture">
 
               <!--start: Container -->
-              <div class="container">
-                    
-                <!--start: Wrapper-->
-                <div id="wrapper">
-                
-                  <!-- start: Wall -->
-                  <div id="wall" class="row-fluid">
-
+                <div id="ListFavoritesContainer">
                     <% @list.favorites.each do |fav| %>
-                    <div class="span3 item">
-                      <div class="picture">
-                        <a class="image" href="#" title="Title">
-                          <%= image_tag(fav.favorite_image, width:'200', height:'300', class: "product-img img-responsive")%></a>
-                        <div class="description">
-                          <p>
-                            <%= fav.name %> 
-                          </p>
-                        </div>
+                      <div class="masonryImage">
+                        <%= image_tag(fav.favorite_image)%>
+                        <li> <%= fav.name %> </li>
                       </div>
-                    </div>
                     <% end %>
-
-                  </div>
-                  <!-- end: Wall -->        
-                      
+    
                 </div>
                 <!--end: Container-->
             </div>
               
-<!--             <div class="post-img picture">
-              <img src="img/heaven.jpg" alt="" />
-            </div> -->
+
             <div class="info">
               <span class="post-date">
                 <span class="month-year"><%= @list.created_at.strftime("%b %d %Y") %></span>
@@ -146,6 +127,24 @@
   
   </div>
   <!--end: Container-->     
+
+
+
+
+<script src="jquery-1.7.1.min.js"></script>
+<script src="jquery.masonry.min.js"></script>
+<script>
+  $(function(){
+ 
+    var $container = $('#container');
+   
+    $container.imagesLoaded( function(){
+      $container.masonry({
+        itemSelector : '.masonryImage'
+      });
+    });
+   
+  });
 
 
 <!-- start: Java Script -->

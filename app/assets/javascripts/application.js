@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require fancybox
 //= require jquery.soulmate
+//= require jquery.masonry.min
 //= require roots
 
 

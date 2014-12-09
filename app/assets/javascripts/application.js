@@ -40,6 +40,7 @@
 //= require modernizr
 //= require retina
 //= require custom
+//= require new_group
 
 $(document).ready(function() {
   $("a.fancybox").fancybox();

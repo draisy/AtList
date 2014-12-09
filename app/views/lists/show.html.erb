@@ -72,15 +72,13 @@
               <%= link_to "ReList", relist_path(fav) %></a></li>
             <% end %>
             <% end %>
-            <li> <h3>Add a new favorite</h3> 
-              <%= form_for ([@list, Favorite.new]) do |f| %>
-                <%= f.label :name %>
-                <%= f.text_field :name %>
-                <%= f.label :description %>
-                <%= f.text_field :description %>
-                <%= f.file_field :favorite_image %><br>
-                <%= f.submit %>
-              <% end %></li>
+            <li><h1><%= link_to "Add a new favorite", "#addfavorite", class: "fancybox" %></h1>
+               <div style="display:none;">
+                 <div id="addfavorite">
+                  <%= render 'shared/add_favorite' %>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
 

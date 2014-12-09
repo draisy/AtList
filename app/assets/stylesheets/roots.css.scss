@@ -51,14 +51,28 @@ body {
 }
 
 .home-button {
-  width: 35% !important;
+/* width: 35% !important; */
+  width: 50%;
+  height: 20%;
+  height: 40px;
+  font-size: 10px;
 }
 
+.social-icon{
+  margin-left: -2px;
+  margin-top: 2px;
+}
+
+.login-text{
+  margin-left: 200%
+}
 
 .add-line {
   border-top: 7px solid black;
   margin-bottom: 4%;
   width: 98% !important;
 }
+
+
 
 

@@ -17,10 +17,23 @@
 
           <!-- start: Post -->
           <div class="post first last">
-              
+
             <div class="post-img picture">
-              <img src="img/heaven.jpg" alt="" />
+
+              <!--start: Container -->
+                <div id="ListFavoritesContainer">
+                    <% @list.favorites.each do |fav| %>
+                      <div class="masonryImage">
+                        <%= image_tag(fav.favorite_image)%>
+                        <li> <%= fav.name %> </li>
+                      </div>
+                    <% end %>
+    
+                </div>
+                <!--end: Container-->
             </div>
+              
+
             <div class="info">
               <span class="post-date">
                 <span class="month-year"><%= @list.created_at.strftime("%b %d %Y") %></span>
@@ -63,24 +76,22 @@
           <h3>Favorites</h3>
           <ul class="links-list-alt">
             <% @list.favorites.each_with_index do |fav, i| %>
-            <li><a href="full_width.html"><%= i + 1%>. <%=fav.name %>: <%=fav.description%>
-            <% if @list.user == current_user %>
+            <li><a href="#"><%= i + 1%>. <%=fav.name %>: <%=fav.description%>
+            <%# if @list.user == current_user %>
               <%= link_to "x", list_favorite_path(@list, fav.id), :method => :delete %>
               <%= link_to "edit", edit_list_favorite_path(@list, fav.id) %></a></li>
-            <% else %>
+            <%# else %>
               <%= link_to "UpPoke", poke_path(fav) %>
               <%= link_to "ReList", relist_path(fav) %></a></li>
+            <%# end %>
             <% end %>
-            <% end %>
-            <li> <h3>Add a new favorite</h3> 
-              <%= form_for ([@list, Favorite.new]) do |f| %>
-                <%= f.label :name %>
-                <%= f.text_field :name %>
-                <%= f.label :description %>
-                <%= f.text_field :description %>
-                <%= f.file_field :favorite_image %><br>
-                <%= f.submit %>
-              <% end %></li>
+            <li><h1><%= link_to "Add a new favorite", "#addfavorite", class: "fancybox" %></h1>
+               <div style="display:none;">
+                 <div id="addfavorite">
+                  <%= render 'shared/add_favorite' %>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
 
@@ -116,6 +127,24 @@
   
   </div>
   <!--end: Container-->     
+
+
+
+
+<script src="jquery-1.7.1.min.js"></script>
+<script src="jquery.masonry.min.js"></script>
+<script>
+  $(function(){
+ 
+    var $container = $('#container');
+   
+    $container.imagesLoaded( function(){
+      $container.masonry({
+        itemSelector : '.masonryImage'
+      });
+    });
+   
+  });
 
 
 <!-- start: Java Script -->

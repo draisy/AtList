@@ -13,11 +13,15 @@ class User < ActiveRecord::Base
   has_many :pokes, :foreign_key => 'giver_id'
   has_many :relists, :foreign_key => 'giver_id'
 
+  after_save :load_into_soulmate
+  before_destroy :remove_from_soulmate
+
 
   # SEARCH------
   searchable do 
-    text :first_name, :boost => 2.0
-    text :last_name, :boost => 2.0 
+    text :full_name, :boost => 5.0
+    text :first_name
+    text :last_name
     text :email  
 
     string :sort_first_name do 
@@ -132,11 +136,25 @@ class User < ActiveRecord::Base
 
     user.first_name = user_attrs["first_name"]
     user.last_name = user_attrs["last_name"]
+    user.full_name = user_attrs["first_name"] + " " + user_attrs["last_name"]
     user.user_image = user_attrs["picture"]["data"]["url"]
     user.email = user_attrs["email"]
 
-    # add data attrs you want to get
   end
+
+  private 
+
+    def load_into_soulmate
+    loader = Soulmate::Loader.new("users")
+    loader.add("term" => full_name, "id" => self.id, "data" => {
+      "link" => Rails.application.routes.url_helpers.user_path(self)
+      })
+    end
+ 
+    def remove_from_soulmate
+      loader = Soulmate::Loader.new("users")
+        loader.remove("id" => self.id)
+    end
 
 
 end

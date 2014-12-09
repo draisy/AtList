@@ -4,7 +4,6 @@
   <title>AtlistApp</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag "autocomplete-rails.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -57,14 +56,14 @@
                   <% end %>
                 </ul>
               </div>
-           <div class="ui-widget">     
-          <% if current_user %>
-            <%= form_tag search_path, :method => 'get' do %>
-            <%= text_field_tag :q, params[:q], :placeholder => "Search for a person, category, list or favorite", :class => "search-field" %>
-            <%= submit_tag "Find it!", :class => "btn-default find-it-button"  %>       
-           <% end %>
-          <% end %>
-              </div>
+          <div class="search-wrapper">
+            <% if current_user %>
+              <%= form_tag search_path, :method => 'get' do %>
+              <%= text_field_tag "search", nil, :placeholder => "Search for a person, list or favorite", :class => "search-field", autocomplete: :off %>
+              <%= submit_tag "Find it!", :class => "btn-default find-it-button"  %>       
+            <% end %>
+            <% end %>
+          </div>
             </div>
           </div>  
       <!--end: Navigation -->

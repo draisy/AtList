@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20141203170447) do
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "full_name"
     t.string   "user_image"
     t.string   "email"
     t.string   "provider"

@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
- # root :to => "main", :constraints => :current_user
+
   root 'roots#index'
 
-  resources :users do
-    resources :lists
-  end
+  mount Soulmate::Server, :at => "/autocomplete"
 
-  resources :lists do
+  resources :users do 
+    resources :lists
+  end 
+
+  resources :lists do 
     resources :favorites
-  end
+  end 
 
-  resources :categories do
+  resources :categories do 
     resources :lists
-  end
+  end 
 
   resources :users
 
@@ -29,7 +31,6 @@ Rails.application.routes.draw do
   get '/what_we_do' => 'roots#what_we_do', :as => :what_we_do
   get '/team' => 'roots#team', :as => :team
   get '/contact' => 'roots#contact', :as => :contact
-  #mount Soulmate::Server, :at => "/autocomplete"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

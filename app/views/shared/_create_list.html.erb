@@ -1,0 +1,24 @@
+<h1> New List </h1>
+
+
+<%= form_tag lists_path, role: "form" do -%>  
+
+  <div class="form-group">
+    <%= label_tag "title" %>
+    <%= text_field_tag "list[title]", nil, class: "form-control", required: "required", placeholder: "This list's title" %>
+  </div>
+
+  <div id="triggers" class="form-group">
+    <%= label_tag "Favorites" %>
+    <p class="trigger">
+      <input name="triggers[][name]" type="text" placeholder="What's your new favorite?" class="form-control trigger-box">
+      <input name="triggers[][description]" type="text" placeholder="How would you describe it?" class="form-control trigger-box">
+      <input name="triggers[][image]" type="file" placeholder="Upload an image" class="form-control trigger-box">
+    <button class="add-trigger btn btn-default btn-sm" type="button">+</button ></p>
+  </div>
+
+  <div class="form-group text-center">
+    <%= submit_tag "Create", class: "btn btn-success btn-lg" %>
+  </div>
+
+<% end %>

@@ -15,6 +15,10 @@
 //= require jquery-ui
 //= require jquery-ui/autocomplete
 //= require jquery-1.9.1.min
+//= require fancybox
+//= require jquery.soulmate
+//= require jquery.masonry.min
+//= require roots
 //= require jquery.isotope.min
 //= require jquery.imagesloaded
 //= require bootstrap.min
@@ -43,3 +47,8 @@
 //= require autocomplete-rails
 //= require influence-chart
 //= require customtooltip
+//= require new_group
+
+$(document).ready(function() {
+  $("a.fancybox").fancybox();
+});

@@ -2,9 +2,9 @@ class RootsController < ApplicationController
   layout "special"
 
   def index
-  if current_user
-    redirect_to main_path
-  end
+    if current_user
+      redirect_to main_path
+    end
   end
 
   def main
@@ -18,5 +18,5 @@ class RootsController < ApplicationController
 
   def contact
   end
-  
+
 end

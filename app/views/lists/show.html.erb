@@ -51,12 +51,13 @@
               </div>
               <div class="post-meta">
                 <span><i class="icon-user"></i><%= link_to @list.user.first_name, user_path(@list.user) %></span> 
-                <span><i class="icon-comments-alt"></i>With #POKES/RELISTS</span>
+                <span><i class="icon-bullhorn"></i>With <%= @list.get_list_influence %> influence score</span>
               </div>
             </div>
           </div>
           <!-- end: Post -->
           <hr>
+          <i class="icon-trash-o"></i> List
           <%= link_to "Delete List", user_list_path(current_user, @list), :method => :delete %>
           <div class="clearfix"></div>
         </div>  
@@ -82,9 +83,14 @@
           <h3>Favorites</h3>
           <ul class="links-list-alt">
             <% @list.favorites.each_with_index do |fav, i| %>
-            <li><a href="#"><%= i + 1%>. <%=fav.name %>: <%=fav.description%>
+            <li><a href="#"><strong><%=fav.name %></strong><br/>
+            <%=fav.description%>
             <%# if @list.user == current_user %>
+  
+         
+            <i class="icon-pencil"></i>
               <%= link_to "x", list_favorite_path(@list, fav.id), :method => :delete %>
+               <i class="icon-close"></i>
               <%= link_to "edit", edit_list_favorite_path(@list, fav.id) %></a></li>
             <%# else %>
               <%= link_to "UpPoke", poke_path(fav) %>

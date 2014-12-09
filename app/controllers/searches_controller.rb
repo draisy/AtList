@@ -18,15 +18,15 @@ class SearchesController < ApplicationController
     @list_array.collect! do |list|
       {:id => list.id, :list_score => list.list_score,
        :title => list.title, :user_id => list.user_id,
-       :user_first_name => list.user.first_name}
+       :user_first_name => list.user.first_name,
+       :photo => list.user.user_image + "?type=large"
+     }
     end
    # @list_json = @list_array.to_json
-
     respond_to do |format|
       format.html
       format.json { render :json => @list_array.to_json }
     end
-    #respond_with @list_array
 
   end
 

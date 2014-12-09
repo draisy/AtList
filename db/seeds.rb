@@ -12,13 +12,14 @@ last_names = ["Hyer", "Bratler", "Penn", "Aflick", "Joly", "Dunkins", "Adler", "
 lists = ["best coffee in soho", "coffee in fidi", "coffee in midtown", "coffee in financial district", "coffee shops in soho", "cappucino and coffee in soho", "favorite coffee in west village", "cool west village coffee shops", "hip west village coffee spots", "favorite coffee in soho"] 
 
 favorites = [{:name => "Ground Support", :description => "best cappucino spot for friends"},{:name => "Gregory's", :description => "rich espresso"},{:name => "Midtown Coffee", :description => "super quick and easy"},{:name => "BlueBottle", :description => "real Australian coffee"},{:name => "Aroma", :description => "pretty cool Israeli joint"},{:name => "Saturday's", :description => "hip Aussie spot"},{:name => "Whynot Cafe", :description => "trendy and delicious"},{:name => "West vil coffee", :description => "fun with friends"},{:name => "Draisy's coffee", :description => "home-brewed goodness"},{:name => "Francois Payard", :description => "French capital for coffee"}]
-
+photo = "http://graph.facebook.com/10152917441392922/picture"
 category = Category.create(:name => "coffee")
 
 20.times do 
   u = User.new
   u.first_name = first_names.sample
   u.last_name = last_names.sample
+  u.user_image = photo
   l = List.new
   l.title = lists.sample
   l.category = category

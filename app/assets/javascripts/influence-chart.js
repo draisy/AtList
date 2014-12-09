@@ -1,18 +1,10 @@
 function renderChart(json_url, sel) {
   alert("in function")
 
-  $('.json-data').click(function() {
-    var view_type = $(this).attr('id');
-   // $('#view_selection a').removeClass('active');
-   // $(this).toggleClass('active');
-    custom_bubble_chart.toggle_view(view_type);
-    return false;
-  });
-
-  
   d3.json(json_url, function(data) {
     custom_bubble_chart.init(data);
     custom_bubble_chart.toggle_view('all');
+   // custom_bubble_chart.photos(data);
     });
 
 var custom_bubble_chart = (function(d3, CustomTooltip) {
@@ -48,16 +40,20 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     //bubble in the vis, then add each node
     //to nodes to be used later
     data.forEach(function(d){
+
       var node = {
         id: d.id,
         radius: radius_scale(parseInt(d.list_score, 10)),
         value: d.list_score,
         name: d.title,
         user: d.user_first_name,
+        photo: d.photo,
         //group: d.group,
         //year: d.start_year,
+
         x: Math.random() * 900,
         y: Math.random() * 800
+
       };
       nodes.push(node);
     });
@@ -68,23 +64,68 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
                 .attr("width", width)
                 .attr("height", height)
                 .attr("id", "svg_vis");
+
+    
+      var defs = vis.append('svg:defs');
+      for(var i = 1; i < nodes.length; i++){
+          defs.append('svg:pattern')
+              .attr('id', 'photo_'+i)
+             // .attr('patternUnits', 'userSpaceOnUse')
+              //.attr('patternUnits', '1')
+              .attr('width', '30')
+              .attr('height', '30')
+              .append('svg:image')
+              .attr('xlink:href', data[i].photo)
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('width', 150)
+              .attr('height', 150);
+    }
+
+     var group = d3.select("#svg_vis").append("g").attr("id", "#svg_g");
  
     circles = vis.selectAll("circle")
                  .data(nodes, function(d) { return d.id ;});
  
-    circles.enter().append("circle")
+    var enter = circles.enter();
+
+    enter.append("circle")
       .attr("r", 0)
-      .attr("fill", function(d) { return fill_color(d.group) ;})
+     // .attr("fill", function(d) { return fill_color(d.group) ;})
+     // .attr('fill', "url(#photo_1)")
       .attr("stroke-width", 2)
       .attr("stroke", function(d) {return d3.rgb(fill_color(d.title)).darker();})
      // .attr("stroke", function(d) {return d3.rgb(fill_color(d.group)).darker();})
       .attr("id", function(d) { return  "bubble_" + d.id; })
       .on("mouseover", function(d, i) {show_details(d, i, this);} )
       .on("mouseout", function(d, i) {hide_details(d, i, this);} );
- 
+    
+    //circle.append("svg:image")
+   // .attr("xlink:href", "pigeon.jpg)
+
     circles.transition().duration(2000).attr("r", function(d) { return d.radius; });
  
   }
+  
+//d3.select("#bubble_10")[0][0].__data__.photo
+  // append("image")
+  //     .attr("xlink:href", "http://www.e-pint.com/epint.jpg")
+  //     .attr("width", 150)
+  //     .attr("height", 200);
+
+    //d3.selectAll("circle").append("image").data(nodes, function(d) { return d.photo ;});
+      //    .attr("xlink:href", "http://www.e-pint.com/epint.jpg")
+      // .attr("width", 150)
+      // .attr("height", 200);
+  //var imgs = vis.selectAll("image").data(nodes, function(d) { return d.photo ;});
+    // imgs.enter()
+    // .append("svg:img")
+    // .attr("xlink:href", 'http://placekitten.com/g/200/300')
+    // .attr("x", "60")
+    // .attr("y", "60")
+    // .attr("width", "20")
+    // .attr("height", "20");
+
  
   function charge(d) {
     return -Math.pow(d.radius, 2.0) / 8;
@@ -171,6 +212,12 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
     tooltip.hideTooltip();
   }
 
+function loadPhotos(){
+    nodes.forEach(function (d){
+      d3.select("#bubble_" + d.id).attr('fill', "url(#photo_1)")
+  });
+ }
+
 function addCommas(nStr)
   {
     nStr += '';
@@ -189,7 +236,7 @@ function addCommas(nStr)
     custom_chart(_data);
     start();
   };
- 
+
   my_mod.display_all = display_group_all;
   //my_mod.display_year = display_by_year;
   my_mod.toggle_view = function(view_type) {
@@ -197,9 +244,11 @@ function addCommas(nStr)
       display_by_year();
     } else {
       display_group_all();
-      }
+      setTimeout(loadPhotos, 2200);
     };
- 
+  } 
   return my_mod;
+
 })(d3, CustomTooltip);
 };
+

@@ -3125,6 +3125,7 @@ a.buy:hover {
 .user-stats {
   margin-left: 28%;
   margin-top: 1.5%;
+  text-align: center;
 }
 
 .stats {

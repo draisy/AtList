@@ -10,10 +10,22 @@
 <div class="container">
   <div class="row-fluid">
     <div class="user-stats">
-      <div class="span2"><h4 class="stats"># Lists: <%= @lists.count %></h4></div>
-      <div class="span2"><h4 class="stats"># Favorites: <%= @favorites_count %> </h4></div>
-      <div class="span2"><h4 class="stats"># Upvotes: <%= @lists.last.favorites.first.influence.tabulate_score %></h4></div>
-      <div class="span2"><h4 class="stats"># Relists:</h4></div>
+      <div class="span2">
+        <i class="fa fa-list"></i><br/>
+        <h4 class="stats">Lists: <%= @lists.count %></h4>
+      </div>
+      <div class="span2">
+        <i class="fa fa-heart"></i><br/>
+        <h4 class="stats">Favorites: <%= @favorites_count %> </h4>
+      </div>
+      <div class="span2">
+          <i class="fa fa-thumbs-up"></i><br/>
+           <h4 class="stats">Upvotes: <%= @lists.last.favorites.first.influence.tabulate_score %></h4>
+      </div>
+      <div class="span2">
+        <i class="fa fa-retweet"></i><br/>
+        <h4 class="stats">Relists:</h4>
+      </div>
     </div>
   </div>
 </div>

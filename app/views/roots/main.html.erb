@@ -47,8 +47,8 @@
             </div>
             <div class="meta">
               <span><i class="icon-calendar"></i><%= list.created_at.strftime("%b %d %Y") %></span>
-              <span><i class="icon-user"></i> <a href="#"><%=list.user.first_name %></a></span>
-              <span><i class="icon-heart-empty"></i><%= list.get_list_influence %></span>
+              <span><i class="icon-user"></i> <a href="/users/<%= list.user_id %>"><%=list.user.first_name %></a></span>
+              <span><i class="icon-bullhorn"></i><%= list.get_list_influence %></span>
             </div>
           </div>
         </div>

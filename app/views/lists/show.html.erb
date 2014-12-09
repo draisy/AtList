@@ -63,14 +63,14 @@
           <h3>Favorites</h3>
           <ul class="links-list-alt">
             <% @list.favorites.each_with_index do |fav, i| %>
-            <li><a href="full_width.html"><%= i + 1%>. <%=fav.name %>: <%=fav.description%>
-            <% if @list.user == current_user %>
+            <li><a href="#"><%= i + 1%>. <%=fav.name %>: <%=fav.description%>
+            <%# if @list.user == current_user %>
               <%= link_to "x", list_favorite_path(@list, fav.id), :method => :delete %>
               <%= link_to "edit", edit_list_favorite_path(@list, fav.id) %></a></li>
-            <% else %>
+            <%# else %>
               <%= link_to "UpPoke", poke_path(fav) %>
               <%= link_to "ReList", relist_path(fav) %></a></li>
-            <% end %>
+            <%# end %>
             <% end %>
             <li><h1><%= link_to "Add a new favorite", "#addfavorite", class: "fancybox" %></h1>
                <div style="display:none;">

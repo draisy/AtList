@@ -12,9 +12,10 @@ class ListsController < ApplicationController
     @list.title = params[:list][:title]
     @list.user = current_user
     @list.assign_triggers(params[:triggers])
-
-    # @favorite = @list.favorites.create(favorite_params)
-    # @favorite.create_influence
+    @list.favorites.each do |fav|
+      fav.create_influence
+    end
+    @list.save
     current_user.lists << @list 
     redirect_to user_list_path(current_user.id, @list.id)
   end 

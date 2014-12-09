@@ -47,16 +47,18 @@
 
         <div class="span3 item">
           <div class="picture">
-            <a class="image" href="project.html" title="Title"><img src="img/photo5.jpg" alt=""/></a>
+            <a class="image" href="project.html" title="Title">
+            <%= image_tag(User.find(4).lists.first.favorites.first.favorite_image, width:'700', height:'580', class: "product-img img-responsive")%></a>
             <div class="description">
               <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                "<%= User.find(4).lists.first.title %>" from <%=User.find(4).first_name %> <br>
+                <%= User.find(4).lists.first.favorites.first.name %>: <%= User.find(4).lists.first.favorites.first.description %>
               </p>
             </div>
             <div class="meta">
-              <span><i class="icon-calendar"></i>1 June 2011</span>
-              <span><i class="icon-user"></i> <a href="#">lucas</a></span>
-              <span><i class="icon-heart-empty"></i> 88</span>
+              <span><i class="icon-calendar"></i></span>
+              <span><i class="icon-user"></i> <a href="#"><%=User.find(4).first_name %></a></span>
+              <span><i class="icon-heart-empty"></i><%= User.find(4).lists.first.get_list_influence %></span>
             </div>
           </div>
         </div>

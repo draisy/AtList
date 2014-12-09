@@ -65,21 +65,30 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
                 .attr("height", height)
                 .attr("id", "svg_vis");
 
-    
+    var photo_height, photo_width;
       var defs = vis.append('svg:defs');
       for(var i = 1; i < nodes.length; i++){
+       // var photo_height = radius_scale(parseInt(data[i].list_score, 10))
+       // var photo_width = radius_scale(parseInt(data[i].list_score, 10))
+         photo_height = (parseInt(data[i].list_score));
+         photo_width = (parseInt(data[i].list_score));
+
+
           defs.append('svg:pattern')
               .attr('id', 'photo_'+i)
+              .attr("preserveAspectRatio", "xMidYMid slice")
              // .attr('patternUnits', 'userSpaceOnUse')
-              //.attr('patternUnits', '1')
-              .attr('width', '30')
-              .attr('height', '30')
+              .attr('patternUnits', 'objectBoundingBox')
+             // .attr('viewBox', "0 0 1 1")
+              .attr('width', '100%')
+              .attr('height', '100%')
               .append('svg:image')
               .attr('xlink:href', data[i].photo)
+              .attr("preserveAspectRatio", "xMidYMid slice")
               .attr('x', 0)
               .attr('y', 0)
-              .attr('width', 150)
-              .attr('height', 150);
+              .attr('width', parseInt(photo_width))
+              .attr('height', parseInt(photo_height));
     }
 
      var group = d3.select("#svg_vis").append("g").attr("id", "#svg_g");
@@ -214,7 +223,7 @@ var custom_bubble_chart = (function(d3, CustomTooltip) {
 
 function loadPhotos(){
     nodes.forEach(function (d){
-      d3.select("#bubble_" + d.id).attr('fill', "url(#photo_1)")
+    d3.select("#bubble_" + d.id).attr('fill', "url(#photo_1)")
   });
  }
 
@@ -244,7 +253,7 @@ function addCommas(nStr)
       display_by_year();
     } else {
       display_group_all();
-      setTimeout(loadPhotos, 2200);
+      setTimeout(loadPhotos, 2500);
     };
   } 
   return my_mod;

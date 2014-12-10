@@ -10,30 +10,50 @@
 <div class="container">
   <div class="row-fluid">
     <div class="user-stats">
+
       <div class="span2">
         <i class="fa fa-list"></i><br/>
         <h4 class="stats">Lists: <%= @lists.count %></h4>
       </div>
+
       <div class="span2">
         <i class="fa fa-heart"></i><br/>
-        <h4 class="stats">Favorites: <%= @favorites_count %> </h4>
+        <h4 class="stats"><%= link_to "Favorites: #{@favorites_count}", "#favoritebox", class: "fancybox"%> </h4>
+        <div style="display:none;">
+          <div id="favoritebox">
+            <%= render 'shared/favorite_box' %>
+          </div>
+        </div>
       </div>
+
       <div class="span2">
           <i class="fa fa-thumbs-up"></i><br/>
-           <h4 class="stats">Upvotes: 
-           <% @upvotes = !@lists.empty? ?
-               @lists.last.favorites.first.influence.tabulate_score : 0 %>
-          <%= @upvotes %></h4>
+
+           <h4 class="stats"><%= link_to "Upvotes: #{@user.count_total_upvotes}", "#upvotebox", class: "fancybox"%></h4>
+          <div style="display:none;">
+            <div id="upvotebox">
+              <%= render 'shared/upvote_box' %>
+            </div>
+          </div>
       </div>
+
       <div class="span2">
         <i class="fa fa-retweet"></i><br/>
-        <h4 class="stats">Relists:</h4>
+        <h4 class="stats"><%= link_to "Relists: #{@user.count_total_relists}", "#relistbox", class: "fancybox"%></h4>
+        <div style="display:none;">
+          <div id="relistbox">
+            <%= render 'shared/relist_box' %>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
+
 <br>
 <br>
+
   <!--start: Container -->
   <div class="container">
         

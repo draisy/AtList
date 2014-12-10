@@ -48,6 +48,8 @@
 //= require influence-chart
 //= require customtooltip
 //= require new_group
+//= require packery.pkgd.min
+//= require lists
 
 $(document).ready(function() {
   $("a.fancybox").fancybox();

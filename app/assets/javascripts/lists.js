@@ -1,14 +1,17 @@
-jQuery(document).ready(function () {
-        var $container = $('#ListFavoritesContainer');
-        $container.imagesLoaded(function () {
-            $container.masonry({
-                itemSelector:'.masonryImage',
-                // isAnimated:true,
-                // animationOptions:{
-                //     duration:750,
-                //     easing:'linear',
-                //     queue:false
-                // }
-            });
-        });
-    })
+docReady( function() {
+
+  var container = document.querySelector('.packery');
+  var pckry;
+  
+  imagesLoaded( container, function() {
+    pckry = new Packery( container, {
+      columnWidth: '.grid-sizer',
+      rowHeight: '.grid-sizer',
+      itemSelector: '.item'
+    });
+  });
+
+});
+
+
+

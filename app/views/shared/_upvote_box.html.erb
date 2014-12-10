@@ -1,0 +1,36 @@
+<div class="favorite-box-container">
+<h2><%= @user.first_name%>'s Upvotes </h2>
+<br>
+
+<% @lists.each do |list| %>
+  <div class="list-item-name">
+    <h3>For <%= link_to "#{list.title}"%></h3>
+  </div>
+  <div class="list-item-upvotes">
+    <ul>
+      <% list.favorites.each do |fav| %>
+        <div class="controls controls-row">
+          <li>
+            <div class="span1">
+            <%= image_tag(fav.favorite_image, width: '70', height: '70')%> &nbsp; </div>
+            <div class="span 3">
+            <% fav.pokes.each do |poke| %>
+              <h6><%= link_to "#{poke.giver.full_name}", user_path(poke.giver) %></h6>
+            <% end %>
+          </div>
+          </li>
+        </div>
+        <div class="fancybox-line"></div>
+      <% end %>
+        <br>
+    </ul>
+  </div>
+<% end %>
+
+</div>
+
+
+
+
+
+

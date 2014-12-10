@@ -3198,8 +3198,9 @@ body {
 }
 
 .packery {
-  background: #FDD;
-  background: hsla(45, 100%, 40%, 0.2);
+  /*background: #FDD;*/
+  background: rgba(203, 191, 195, 0.2);
+  /*background: hsla(45, 100%, 40%, 0.2);*/
   /* un-comment this line to see mismatch */
    /*width: 803px; */
 }
@@ -3363,6 +3364,24 @@ body {
   color: rgba(52, 0, 16, 0.2);
 }
 
+.label-text-bold {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+}
+
+.create-list-box {
+  /*background: rgba(203, 191, 195, 0.5);*/
+  border: 12px solid rgba(203, 191, 195, 0.5); ;
+}
+
+.create-list-div {
+  margin: 10px;
+  padding: 10px;
+}
+
+.logo-pull-right {
+  float: right;
+}
 
 
 

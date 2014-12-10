@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
       user.first_name = auth["info"]["first_name"]
       user.last_name = auth["info"]["last_name"]
       user.email = auth["info"]["email"]
-      user.user_image = auth["info"]["image"]
+      user.user_image = auth["info"]["image"] + "?type=large"
     end
   end
 

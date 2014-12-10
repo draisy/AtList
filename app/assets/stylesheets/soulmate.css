@@ -11,8 +11,8 @@
     text-shadow: 0 0 0 white;
     /* play around with the top and left properties for correct positioning */
     margin-top: -0.65em; 
-    margin-left: 4.5%;
-    width: 420px;
+    margin-left: 0%;
+    width: 400px;
     z-index: 1000;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;

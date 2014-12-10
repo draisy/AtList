@@ -23,7 +23,6 @@
                   <span class="icon-bar"></span>
                 </a>
           <% if current_user %>
-            <%= image_tag(current_user.user_image, :class => "brand user-image") %>
             <%= link_to "AtList", main_path, :class => "brand" %>
           <% else %>
             <%= link_to "AtList", root_path, :class => "brand" %>
@@ -55,12 +54,14 @@
                   <% end %>
                 </ul>
               </div>
-          <% if current_user %>
-            <%= form_tag result_path, :method => 'get' do %>
-            <%= text_field_tag "search", nil, :placeholder => "Search for a person, category, list or favorite", :class => "search-field", autocomplete: :off %>
-            <%= submit_tag "Find it!", :class => "btn-default find-it-button"  %>       
-          <% end %>
-          <% end %>
+          <div class="search-wrapper">
+            <% if current_user %>
+              <%= form_tag result_path, :method => 'get' do %>
+              <%= text_field_tag "search", nil, :placeholder => "Search for a person, list or favorite", :class => "search-field", autocomplete: :off %>
+              <%= submit_tag "Find it!", :class => "btn-default find-it-button"  %>       
+            <% end %>
+            <% end %>
+          </div>
             </div>
           </div>  
       <!--end: Navigation -->

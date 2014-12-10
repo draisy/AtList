@@ -9,17 +9,24 @@ class ListsController < ApplicationController
   end
 
   def create
+    
+    # uploaded_io = params[:triggers][0][:image]
+    # File.open(Rails.root.join('app','assets', 'images', uploaded_io.original_filename), 'wb') do |file|
+    #   file.write(uploaded_io.read)
+    # end
+
     @list = List.new
     @list.title = params[:list][:title]
     @list.user = current_user
     @list.assign_triggers(params[:triggers])
     @list.favorites.each do |fav|
       fav.create_influence
+      # fav.favorite_image = uploaded_io.original_filename
     end
     @list.save
-    current_user.lists << @list 
+    current_user.lists << @list
     redirect_to user_list_path(current_user.id, @list.id)
-  end 
+  end
 
 
   def index
@@ -33,19 +40,19 @@ class ListsController < ApplicationController
     @tags = @list.find_tags
   end
 
-  def edit 
+  def edit
     @list = List.find(params[:id])
   end
 
   def update
     @list = List.find(params[:id])
-    if params[:list][:category_id].blank? 
+    if params[:list][:category_id].blank?
       @list.update(list_params_new_category)
-    else 
+    else
       @category = Category.find(params[:list][:category_id])
       @list.update(list_params)
     end
-    current_user.lists << @list 
+    current_user.lists << @list
     # redirect_to user_lists_path(current_user.id, @list.id)
     redirect_to user_path(current_user)
   end
@@ -54,7 +61,7 @@ class ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-    redirect_to user_lists_path(current_user)
+    redirect_to user_path(current_user)
   end
 
 

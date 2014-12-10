@@ -79,8 +79,18 @@
               <span><i class="icon-user"></i> <a href="#"><%=list.user.first_name %></a></span>
               <span><i class="icon-heart-empty"></i><%= list.get_list_influence %></span>
               <% if current_user == @user %>
-                  <%= link_to "edit", edit_user_list_path(current_user, list) %>/
-                  <%= link_to "delete", user_list_path(current_user, list), :method => :delete %>
+                <span style="float:right">
+                    <%= link_to(edit_user_list_path(current_user, list)) do %>
+                <i class='icon-pencil fa-lg'></i>
+                   <% end %>
+                   </span>
+
+                  <span style="float:right">
+                 <%= link_to user_list_path(current_user, list), :class => "interactive-links", :method=>:delete do %>
+                  <i class='icon-trash fa-lg'></i>
+                <% end %>
+                </span>
+
               <% end %>
             </div>
           </div>

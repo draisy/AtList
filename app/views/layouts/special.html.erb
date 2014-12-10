@@ -57,7 +57,7 @@
               </div>
           <div class="search-wrapper">
             <% if current_user %>
-              <%= form_tag search_path, :method => 'get' do %>
+              <%= form_tag result_path, :method => 'get' do %>
               <%= text_field_tag "search", nil, :placeholder => "Search for a person, list or favorite", :class => "search-field", autocomplete: :off %>
               <%= submit_tag "Find it!", :class => "btn-default find-it-button"  %>       
             <% end %>

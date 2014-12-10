@@ -12,7 +12,7 @@ class List < ActiveRecord::Base
 
   # SEARCH------
   searchable do
-    text :title, :boost => 2.0
+    text :title
 
     string :sort_title do
       title.downcase.gsub(/^(an?|the)/, '')

@@ -5,8 +5,8 @@ class Favorite < ActiveRecord::Base
   has_many :pokes, through: :influence
   has_many :relists, through: :influence
 
-  after_save :load_into_soulmate
-  before_destroy :remove_from_soulmate
+  # after_save :load_into_soulmate
+  # before_destroy :remove_from_soulmate
 
   # SEARCH------
   searchable do 
@@ -20,20 +20,20 @@ class Favorite < ActiveRecord::Base
   # END OF SEARCH
 
 
-    private 
+    # private 
 
-    def load_into_soulmate
-    loader = Soulmate::Loader.new("favorites")
-    loader.add("term" => name, "id" => self.id, "data" => {
-      "link" => Rails.application.routes.url_helpers.user_list_path(self.list.user, self.list)
-      }
-      )
-    end
+    # def load_into_soulmate
+    # loader = Soulmate::Loader.new("favorites")
+    # loader.add("term" => name, "id" => self.id, "data" => {
+    #   "link" => Rails.application.routes.url_helpers.user_list_path(self.list.user, self.list)
+    #   }
+    #   )
+    # end
  
-    def remove_from_soulmate
-      loader = Soulmate::Loader.new("favorites")
-        loader.remove("id" => self.id)
-    end
+    # def remove_from_soulmate
+    #   loader = Soulmate::Loader.new("favorites")
+    #     loader.remove("id" => self.id)
+    # end
 
 
 end

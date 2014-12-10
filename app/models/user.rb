@@ -19,8 +19,7 @@ class User < ActiveRecord::Base
 
   # SEARCH------
   searchable do 
-    text :full_name, :boost => 5.0
-    text :first_name
+    text :first_name, :boost => 2.0
     text :last_name
     text :email  
 

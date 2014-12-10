@@ -20,7 +20,8 @@ var ready = function(){
  
   $('#search').soulmate({
     url: '/autocomplete/search',
-    types: ['lists','favorites', 'users'],
+    types: ['lists','users'],
+    // types: ['lists','favorites', 'users'],
     renderCallback : render,
     selectCallback : select,
     minQueryLength : 2,

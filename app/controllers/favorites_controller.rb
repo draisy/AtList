@@ -1,7 +1,6 @@
 class FavoritesController < ApplicationController
 
   def create
-    binding.pry
     uploaded_io = params[:favorite][:favorite_image]
     File.open(Rails.root.join('app','assets', 'images', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)

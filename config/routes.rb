@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :users
 
   get '/search' => 'searches#index', :as => :search
+  get '/results' => 'searches#results', :as => :result
   # resources :favorites
 
   get '/auth/:provider/callback' => 'sessions#create', :as => :auth_login

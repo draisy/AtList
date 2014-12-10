@@ -1,9 +1,4 @@
-<% if @list_array %>
-<div class="container"><%= image_tag('logo.jpg', width: '20', height: '20', class: "results-logo")%><h3 class="search-results-category"> RESULTS BY LIST for "<%= @search_query%>" </h3></div>
-</div>
-
-<div class="container"><div class="row-fluid add-line"></div>
-</div>
+<div class='container results-container'></div>
 
   <!--start: Container -->
   <div class="container">
@@ -14,103 +9,66 @@
       <!-- start: Wall -->
       <div id="wall" class="row-fluid">
 
-        <% @list_array.each do |list| %>
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="/users/<%=list.user.id%>/lists/<%=list.id%>" title="Title">
-              <%= image_tag(list.favorites.first.favorite_image, width:'200', height:'300', class: "product-img img-responsive")%></a>
-            <div class="description">
-              <p>
-                "<%= list.title %>" from <%=list.user.first_name %> <br>
-                <%= list.favorites.first.name %>: <%= list.favorites.first.description %>
-              </p>
+        <% if @list_array %>
+          <div class="container"><%= image_tag('logo.jpg', width: '20', height: '20', class: "results-logo")%><h3 class="search-results-category"> RESULTS BY LIST for "<%= @search_query%>" </h3></div>
+          <div class="container"><div class="row-fluid add-line"></div></div>
+
+
+            <% @list_array.each do |list| %>
+            <div class="span3 item">
+              <div class="picture">
+                <a class="image" href="/users/<%=list.user.id%>/lists/<%=list.id%>" title="Title">
+                  <%= image_tag(list.favorites.first.favorite_image, width:'200', height:'300', class: "product-img img-responsive")%></a>
+                <div class="description">
+                  <p>
+                    "<%= list.title %>" from <%=list.user.first_name %> <br>
+                    <%= list.favorites.first.name %>: <%= list.favorites.first.description %>
+                  </p>
+                </div>
+                <div class="meta">
+                  <span><i class="icon-calendar"></i><%= list.created_at.strftime("%b %d %Y") %></span>
+                  <span><i class="icon-user"></i> <a href="/users/<%= list.user_id %>"><%=list.user.first_name %></a></span>
+                  <span><i class="icon-bullhorn"></i><%= list.get_list_influence %></span>
+                </div>
+              </div>
             </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i><%= list.created_at.strftime("%b %d %Y") %></span>
-              <span><i class="icon-user"></i> <a href="/users/<%= list.user_id %>"><%=list.user.first_name %></a></span>
-              <span><i class="icon-bullhorn"></i><%= list.get_list_influence %></span>
+            <% end %>
+
+        <% end %> 
+
+
+
+        <% if @user_array %>
+            <div class="container"><%= image_tag('logo.jpg', width: '20', height: '20', class: "results-logo")%><h3 class="search-results-category"> RESULTS BY USER for "<%= @search_query%>" </h3></div>
+            <div class="container"><div class="row-fluid add-line"></div></div>
+
+          <% @user_array.each do |user| %>
+          <div class="span3 item">
+            <div class="picture">
+              <a class="image" href="/users/<%=user.id%>" title="Title">
+                <%= image_tag(user.user_image, width:'200', height:'300', class: "product-img img-responsive")%></a>
+              <div class="description">
+                <p>
+                  <%= user.full_name %> <br>
+                  Influence: <%= user.user_influence_across_lists %>
+                </p>
+              </div>
+              <div class="meta">
+                <span><i class="icon-calendar"></i><%= user.created_at.strftime("%b %d %Y") %></span>
+                <span><i class="icon-user"></i> <a href="/users/<%=user.id %>"><%=user.first_name %></a></span>
+                <span><i class="icon-bullhorn"></i><%= user.user_influence_across_lists %></span>
+              </div>
             </div>
           </div>
-        </div>
-        <% end %>
-
-
-      </div>
-      <!-- end: Wall -->        
-          
-    </div>
-    <!--end: Container-->
-  
-  </div>
-  <!-- end: Wrapper  --> 
-<% end %>  
+          <% end %>
+        <% end %> 
 
 
 
-<% if @user_array %>
+        <% if @favorite_array %>
+          <div class="container"><%= image_tag('logo.jpg', width: '20', height: '20', class: "results-logo")%><h3 class="search-results-category"> RESULTS BY FAVORITE for "<%= @search_query%>" </h3></div>
 
-<div class="container"><%= image_tag('logo.jpg', width: '20', height: '20', class: "results-logo")%><h3 class="search-results-category"> RESULTS BY USER for "<%= @search_query%>" </h3></div>
-</div>
-<div class="container"><div class="row-fluid add-line"></div>
-</div>
-
-  <!--start: Container -->
-  <div class="container">
-        
-    <!--start: Wrapper-->
-    <div id="wrapper">
-    
-      <!-- start: Wall -->
-      <div id="wall" class="row-fluid">
-
-        <% @user_array.each do |user| %>
-        <div class="span3 item">
-          <div class="picture">
-            <a class="image" href="/users/<%=user.id%>" title="Title">
-              <%= image_tag(user.user_image, width:'200', height:'300', class: "product-img img-responsive")%></a>
-            <div class="description">
-              <p>
-                <%= user.full_name %> <br>
-                Influence: <%= user.user_influence_across_lists %>
-              </p>
-            </div>
-            <div class="meta">
-              <span><i class="icon-calendar"></i><%= user.created_at.strftime("%b %d %Y") %></span>
-              <span><i class="icon-user"></i> <a href="/users/<%=user.id %>"><%=user.first_name %></a></span>
-              <span><i class="icon-bullhorn"></i><%= user.user_influence_across_lists %></span>
-            </div>
-          </div>
-        </div>
-        <% end %>
-
-
-      </div>
-      <!-- end: Wall -->        
-          
-    </div>
-    <!--end: Container-->
-  
-  </div>
-  <!-- end: Wrapper  -->   
-<% end %>
-
-
-
-<% if @favorite_array %>
-<div class="container"><%= image_tag('logo.jpg', width: '20', height: '20', class: "results-logo")%><h3 class="search-results-category"> RESULTS BY FAVORITE for "<%= @search_query%>" </h3></div>
-</div>
-
-<div class="container"><div class="row-fluid add-line"></div>
-</div>
-
-  <!--start: Container -->
-  <div class="container">
-        
-    <!--start: Wrapper-->
-    <div id="wrapper">
-    
-      <!-- start: Wall -->
-      <div id="wall" class="row-fluid">
+          <div class="container"><div class="row-fluid add-line"></div></div>
 
         <% @favorite_array.each do |fav| %>
         <div class="span3 item">
@@ -131,6 +89,7 @@
           </div>
         </div>
         <% end %>
+        <% end %> 
 
 
       </div>
@@ -141,5 +100,6 @@
   
   </div>
   <!-- end: Wrapper  --> 
-<% end %> 
+
+
 

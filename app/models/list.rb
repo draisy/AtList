@@ -34,8 +34,7 @@ as at be because been before being below between both but by can't cannot could 
   tags = favorites.collect do |favorite|
       favorite.name.split + self.title.split
     end
-
-  tags.flatten!.uniq!.select{|tag| !articles.include?(tag)}
+  tags.flatten.uniq.select{|tag| !articles.include?(tag)}
   end
 
 

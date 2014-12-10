@@ -55,3 +55,4 @@ gem "d3-rails"
 gem 'jquery-ui-rails'
 gem 'rails4-autocomplete'
 gem "font-awesome-rails"
+gem "paperclip", "~> 4.2"

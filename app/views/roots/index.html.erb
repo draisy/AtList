@@ -2,15 +2,11 @@
 <div id="welcome-sign-up">
   <br>
   <br>
-  <center><b><h1 class="welcome-text-title"> AtList </h1><b></center>
+  <center><b><h1 class="welcome-text-title"><span><%= image_tag('logo.jpg', width: '45', height: '45')%></span> AtList </h1><b></center>
   <center><h3 class="welcome-text-header"> Capture, share and discover favorites. </h3></center>
   <br><br>
-<!--   <center><h3 class="welcome-text"> Make favorite lists on anything. Gain influence on what you know best. Use the influence of your friends for recommendations you can trust. Connect with the best of the world around you. </h3></center> -->
   <br>
   <br>
-
-
-
 
 <center>
   <%= button_to "/auth/facebook", {class: "home-button btn btn-social btn-facebook"} do %>
@@ -21,12 +17,22 @@
      <i class="social-icon fa fa-facebook"></i><span class="login-text">Login</span>
       <% end %>
   </center>
+<br>
+
+  <div class="about-span">
+    <h3 class="about-home"><%= link_to "About", "#aboutbox", class: "fancybox"%></h3>
+    <div style="display:none;">
+      <div id="aboutbox">
+        <%= render 'shared/about_box' %>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 
 <br>
-<br>
-<br>
+
 
 </body>
 

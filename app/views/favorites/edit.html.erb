@@ -1,10 +1,46 @@
-<h1> Edit "<%= @favorite.name %>" </h1>
+  <!--start: Container -->
+  <div class="container-edit">
+        
+      <!-- start: Wall -->
+      <div id="wall" class="row-fluid">
 
-<%= form_for ([@list, @favorite]) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.file_field :favorite_image %><br>
-  <%= f.submit %>
-<% end %>
+        <div class="span5 item">
+          <div class="picture">
+            <div class="description">
+              <h1 class="edit-favorite-name"> Edit "<%= @favorite.name %>" </h1>
+            </div>
+
+            <a class="image" href="#">
+              <%= image_tag(@favorite.favorite_image, width:'400', height:'500', class: "product-img img-responsive")%></a>
+
+            <div class="description">
+              <p>
+                "<%= @list.title %>" from <%=@list.user.first_name %> <br>
+                <%= @favorite.name %>: <%= @favorite.description %>
+              </p>
+
+              <p>
+              <%= form_for ([@list, @favorite]) do |f| %>
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+                <%= f.label :description %>
+                <%= f.text_field :description %>
+                <%= f.file_field :favorite_image %><br>
+                <%= f.submit "Update now", :class => "btn btn-default" %>
+              <% end %>
+              </p>
+
+            </div>
+            <div class="meta">
+              <span><i class="icon-calendar"></i>First created on: <%= @favorite.created_at.strftime("%b %d %Y") %></span>
+              <span><i class="icon-bullhorn"></i><%= @favorite.influence.score %></span>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- end: Wall -->        
+          
+    </div>
+    <!--end: Container-->

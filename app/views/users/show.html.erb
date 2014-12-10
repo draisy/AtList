@@ -20,7 +20,10 @@
       </div>
       <div class="span2">
           <i class="fa fa-thumbs-up"></i><br/>
-           <h4 class="stats">Upvotes: <%= @lists.last.favorites.first.influence.tabulate_score %></h4>
+           <h4 class="stats">Upvotes: 
+           <% @upvotes = !@lists.empty? ?
+               @lists.last.favorites.first.influence.tabulate_score : 0 %>
+          <%= @upvotes %></h4>
       </div>
       <div class="span2">
         <i class="fa fa-retweet"></i><br/>

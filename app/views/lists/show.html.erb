@@ -51,8 +51,11 @@
           </div>
           <!-- end: Post -->
           <hr>
-          <i class="icon-trash"></i> List
-          <%= link_to "Delete List", user_list_path(current_user, @list), :method => :delete %>
+          <% if current_user == @list.user %>
+            <%= link_to user_list_path(current_user, @list), :method=>:delete do %>
+              <i class='icon-trash'></i> List
+            <% end %>
+         <% end %>
           <div class="clearfix"></div>
         </div>  
     
@@ -127,18 +130,9 @@
         <!-- start: Tags -->
         <div class="widget last">
           <div class="tags">
-            <a href="#">Tag1</a>
-            <a href="#">Tag2</a>
-            <a href="#">Tag3</a>
-            <a href="#">Tag4</a>
-            <a href="#">Tag5</a>
-            <a href="#">Tag6</a>
-            <a href="#">Tag7</a>
-            <a href="#">Tag8</a>
-            <a href="#">Tag9</a>
-            <a href="#">Tag10</a>
-            <a href="#">Tag11</a>
-            <a href="#">Tag12</a>
+          <% @tags.each do |tag| %>
+            <a href="#"><%= tag %></a>
+            <% end %>
           </div>
         </div>
         <!-- end: Tags -->
